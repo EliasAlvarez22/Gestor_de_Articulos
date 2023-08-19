@@ -33,7 +33,10 @@
             this.PanelMenu = new System.Windows.Forms.Panel();
             this.BtnAgregarArticulo = new System.Windows.Forms.Button();
             this.panelFormularios = new System.Windows.Forms.Panel();
+            this.pbxInicio = new System.Windows.Forms.PictureBox();
             this.PanelMenu.SuspendLayout();
+            this.panelFormularios.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxInicio)).BeginInit();
             this.SuspendLayout();
             // 
             // btnArticulos
@@ -74,11 +77,23 @@
             // 
             // panelFormularios
             // 
+            this.panelFormularios.Controls.Add(this.pbxInicio);
             this.panelFormularios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelFormularios.Location = new System.Drawing.Point(249, 0);
             this.panelFormularios.Name = "panelFormularios";
             this.panelFormularios.Size = new System.Drawing.Size(1015, 583);
             this.panelFormularios.TabIndex = 2;
+            // 
+            // pbxInicio
+            // 
+            this.pbxInicio.Image = ((System.Drawing.Image)(resources.GetObject("pbxInicio.Image")));
+            this.pbxInicio.InitialImage = null;
+            this.pbxInicio.Location = new System.Drawing.Point(478, 207);
+            this.pbxInicio.Name = "pbxInicio";
+            this.pbxInicio.Size = new System.Drawing.Size(718, 481);
+            this.pbxInicio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxInicio.TabIndex = 0;
+            this.pbxInicio.TabStop = false;
             // 
             // FrmPrincipal
             // 
@@ -95,6 +110,8 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             this.PanelMenu.ResumeLayout(false);
+            this.panelFormularios.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbxInicio)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -106,5 +123,6 @@
         private System.Windows.Forms.Panel PanelMenu;
         private System.Windows.Forms.Panel panelFormularios;
         private System.Windows.Forms.Button BtnAgregarArticulo;
+        private System.Windows.Forms.PictureBox pbxInicio;
     }
 }

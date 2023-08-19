@@ -42,6 +42,8 @@ namespace Negocio
 
                 throw ex;
             }
+            
+            
         }
         public void cerrarConexion()
         {
@@ -51,7 +53,7 @@ namespace Negocio
         }
 
         // Para Insert
-        public void InsertarDB()
+        public void EjecutarNonQuery()
         {
             try
             {
@@ -69,6 +71,9 @@ namespace Negocio
         {
             comando.Parameters.AddWithValue(nombre, valor);
         }
+
+
+   
         
 
     }

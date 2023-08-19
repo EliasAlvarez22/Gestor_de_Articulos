@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Dominio;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.Security.AccessControl;
 
 namespace Negocio
 {
@@ -59,8 +60,7 @@ namespace Negocio
 
         public void Agregar (Articulo Nuevo)
         {
-            AccesoDatos datos = new AccesoDatos();
-            
+            AccesoDatos datos = new AccesoDatos();            
             try
             {
                 datos.SetearQuery("insert into ARTICULOS(Codigo,Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio) values" +
@@ -72,15 +72,57 @@ namespace Negocio
                 datos.setearParametros("@IdCategoria", Nuevo.Categoria.Id);
                 datos.setearParametros("@url", Nuevo.ImagenUrl);
                 datos.setearParametros("@precio", Nuevo.Precio);
-                datos.InsertarDB();
-
-
+                datos.EjecutarNonQuery();
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
+        }
+        public void ModificarArticulo(Articulo articulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+
+                datos.SetearQuery("UPDATE ARTICULOS SET Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion," +
+                " IdMarca = @idMarca, IdCategoria = @idCategoria, ImagenUrl = @imagenUrl, Precio = @precio where Id = @id");
+
+                datos.setearParametros("@codigo", articulo.CodigoArticulo);
+                datos.setearParametros("@nombre", articulo.Nombre);
+                datos.setearParametros("@descripcion", articulo.Descripcion);
+                datos.setearParametros("@idMarca", articulo.Marca.Id);
+                datos.setearParametros("@idCategoria", articulo.Categoria.Id);
+                datos.setearParametros("@imagenUrl", articulo.ImagenUrl);
+                datos.setearParametros("@precio", articulo.Precio);
+                datos.setearParametros("@id", articulo.Id);
+                datos.EjecutarNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void EliminarArticulo(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearQuery("delete from ARTICULOS where Id = @id");
+                datos.setearParametros("@id", id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }finally { datos.cerrarConexion();}
         }
     }
 }

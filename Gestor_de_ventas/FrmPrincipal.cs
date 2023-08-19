@@ -22,9 +22,7 @@ namespace Gestor_de_ventas
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-            
-            
-           
+
         }
         private void AbrirFormulario<MiForm> () where MiForm : Form, new()
         {
