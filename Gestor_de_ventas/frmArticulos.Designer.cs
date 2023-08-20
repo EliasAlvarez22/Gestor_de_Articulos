@@ -68,7 +68,6 @@
             this.lblTitulo.Size = new System.Drawing.Size(338, 46);
             this.lblTitulo.TabIndex = 2;
             this.lblTitulo.Text = "Lista de artículos";
-            this.lblTitulo.Click += new System.EventHandler(this.lblTitulo_Click);
             // 
             // BtnEditarArticulo
             // 
