@@ -26,7 +26,7 @@ namespace Gestor_de_ventas
             InitializeComponent();
             this.articulo = articulo;
             Text = "Modificar Artículo";
-            LblArticuloNuevo.Text = "Modificar Articulo";
+            LblArticuloNuevo.Text = "Modificar Artículo";
         }
 
        
@@ -72,18 +72,14 @@ namespace Gestor_de_ventas
                     MessageBox.Show("Agregado exitosamente");
 
                 }
-
             }
             catch (Exception ex)
             {
 
                 MessageBox.Show(ex.ToString());
             }
-
             Close();
-
         }
-
         private void frmNuevoArticulo_Load(object sender, EventArgs e)
         {
             CategoriaNegocio NegocioCategorias = new CategoriaNegocio();
@@ -212,5 +208,7 @@ namespace Gestor_de_ventas
                 e.Handled = true; // Suprime la tecla presionada si no es un número
             }
         }
+
+        
     }  
 }

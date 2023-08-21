@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
+using PdfSharp.Pdf.Filters;
 
 namespace Gestor_de_ventas
 {
@@ -29,11 +30,18 @@ namespace Gestor_de_ventas
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
+                //Grid de articulos
                 ListaArticulos = negocio.ListarArticulos();
-
                 DgvArticulos.DataSource = ListaArticulos;
-
                 OcultarColumnas();
+
+                //Campos
+                CboCampo.Items.Clear();
+                CboCampo.Items.Add("Precio");
+                CboCampo.Items.Add("Código");
+                CboCampo.Items.Add("Marcas");
+                CboCampo.Items.Add("Categorías");
+
             }
             catch (Exception ex)
             {
@@ -58,9 +66,20 @@ namespace Gestor_de_ventas
         private void BtnEditarArticulo_Click(object sender, EventArgs e)
         {
             Articulo seleccionado;
-            seleccionado = (Articulo)DgvArticulos.CurrentRow.DataBoundItem;
-            frmNuevoArticulo Modificar = new frmNuevoArticulo(seleccionado);
-            Modificar.ShowDialog();
+            //Valida si no tiene articulos, que no haga nada.
+            if (DgvArticulos.RowCount == 0)
+                return;
+            try
+            {                
+                seleccionado = (Articulo)DgvArticulos.CurrentRow.DataBoundItem;
+                frmNuevoArticulo Modificar = new frmNuevoArticulo(seleccionado);
+                Modificar.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void BtnRefrescar_Click(object sender, EventArgs e)
@@ -73,14 +92,15 @@ namespace Gestor_de_ventas
 
             OcultarColumnas();
         }
-
-
         //Exportar PDF con iTextSharp, se oculta la url de Imagen en la exportacion
-
         private void BtnExportarPDF_Click(object sender, EventArgs e)
         {
             try
             {
+                //Valida si no tiene articulos, que no haga nada.
+                if (DgvArticulos.RowCount == 0)
+                    return;
+
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "PDF Files|*.pdf";
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -92,10 +112,10 @@ namespace Gestor_de_ventas
                     pdfDocument.Open();
                     pdfDocument.AddAuthor("Gestor de Artículos");
                     //Encabezado
-                    pdfDocument.Add(new Paragraph("Lista de Articulos"));
+                    pdfDocument.Add(new Paragraph("Lista de Artículos"));
                     pdfDocument.Add(new Paragraph(Chunk.NEWLINE));
 
-                    PdfPTable pdfTable = new PdfPTable(DgvArticulos.ColumnCount - columnasOcultar.Length); // Menos 2 columnas que deseas ocultar
+                    PdfPTable pdfTable = new PdfPTable(DgvArticulos.ColumnCount - columnasOcultar.Length); // Menos las columnas segun el tamano de las columnas a ocultar
                     pdfTable.WidthPercentage = 100;
 
                     for (int i = 0; i < DgvArticulos.ColumnCount; i++)
@@ -144,12 +164,93 @@ namespace Gestor_de_ventas
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
 
+            //Valida si no tiene articulos, que no haga nada.
+            if (DgvArticulos.RowCount == 0)                          
+                return;
+
             Articulo seleccionado = DgvArticulos.CurrentRow.DataBoundItem as Articulo;
-            DialogResult resultado = MessageBox.Show("Seguro que desea eliminar?", "Eliminar Pokemon", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult resultado = MessageBox.Show("Seguro que desea eliminar?", "Eliminar artículo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (resultado == DialogResult.Yes)
             {
                 negocio.EliminarArticulo(seleccionado.Id);
                 MessageBox.Show("Artículo eliminado correctamente");
+            }
+        }
+
+        private void CboCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CategoriaNegocio NegocioCategorias = new CategoriaNegocio();
+            MarcaNegocio NegocioMarcas = new MarcaNegocio();
+            try
+            {
+                TxtFiltro.Enabled = true;
+                string opcion = CboCampo.SelectedItem.ToString();
+                CboCriterio.DataSource = null;
+
+                if (opcion == "Precio")
+                {
+                    CboCriterio.Items.Clear();
+                    CboCriterio.Items.Add("Mayor a");
+                    CboCriterio.Items.Add("Menor a");
+                    CboCriterio.Items.Add("Igual que");
+                }
+                if (opcion == "Código")
+                {
+                    CboCriterio.Items.Clear();
+                    CboCriterio.Items.Add("Igual que");
+                    CboCriterio.SelectedIndex = 0;
+                }
+                if (opcion == "Marcas")
+                {
+                    CboCriterio.DataSource = NegocioMarcas.ListarMarcas();
+                    CboCriterio.ValueMember = "Id";
+                    CboCriterio.DisplayMember = "Descripcion";
+                    CboCriterio.SelectedIndex = -1;
+                    TxtFiltro.Enabled = false;
+                    TxtFiltro.Text = "";
+
+                }
+                if (opcion == "Categorías")
+                {
+                    CboCriterio.DataSource = NegocioCategorias.ListarCategorias();
+                    CboCriterio.ValueMember = "Id";
+                    CboCriterio.DisplayMember = "Descripcion";
+                    CboCriterio.SelectedIndex = -1;
+                    TxtFiltro.Enabled = false;
+                    TxtFiltro.Text = "";
+                }
+            }                
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void BtnFiltrar_Click(object sender, EventArgs e)
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            try
+            {
+                List<Articulo> listaFiltrada;
+                DgvArticulos.DataSource = null;
+                listaFiltrada = negocio.Filtrar(CboCampo.Text, CboCriterio.Text, TxtFiltro.Text);
+                DgvArticulos.DataSource = listaFiltrada;
+                OcultarColumnas();
+
+                if (DgvArticulos.RowCount > 0)
+                {
+                    DgvArticulos.Rows[0].Selected = true;
+                    DgvArticulos.CurrentCell = DgvArticulos.Rows[0].Cells[1];
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
             }
         }
     }

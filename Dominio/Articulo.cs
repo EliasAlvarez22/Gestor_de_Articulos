@@ -11,7 +11,7 @@ namespace Dominio
     public class Articulo
     {
         public int Id { get; set; }
-        [DisplayName("Codigo de Articulo")]
+        [DisplayName("Código de Artículo")]
         public string CodigoArticulo { get; set; }
         public string Nombre { get; set; }
         [DisplayName("Descripción")]

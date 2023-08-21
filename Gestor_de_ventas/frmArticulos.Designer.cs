@@ -35,6 +35,13 @@
             this.BtnRefrescar = new System.Windows.Forms.Button();
             this.BtnEliminarArticulo = new System.Windows.Forms.Button();
             this.BtnExportarPDF = new System.Windows.Forms.Button();
+            this.CboCampo = new System.Windows.Forms.ComboBox();
+            this.CboCriterio = new System.Windows.Forms.ComboBox();
+            this.TxtFiltro = new System.Windows.Forms.TextBox();
+            this.LblCampo = new System.Windows.Forms.Label();
+            this.LblCriterio = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.BtnFiltrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgvArticulos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,7 +55,7 @@
             this.DgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvArticulos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.DgvArticulos.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.DgvArticulos.Location = new System.Drawing.Point(2, 171);
+            this.DgvArticulos.Location = new System.Drawing.Point(2, 84);
             this.DgvArticulos.MultiSelect = false;
             this.DgvArticulos.Name = "DgvArticulos";
             this.DgvArticulos.RowHeadersWidth = 51;
@@ -77,7 +84,7 @@
             this.BtnEditarArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnEditarArticulo.Image = ((System.Drawing.Image)(resources.GetObject("BtnEditarArticulo.Image")));
             this.BtnEditarArticulo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnEditarArticulo.Location = new System.Drawing.Point(66, 518);
+            this.BtnEditarArticulo.Location = new System.Drawing.Point(72, 420);
             this.BtnEditarArticulo.Name = "BtnEditarArticulo";
             this.BtnEditarArticulo.Size = new System.Drawing.Size(130, 38);
             this.BtnEditarArticulo.TabIndex = 0;
@@ -93,7 +100,7 @@
             this.BtnRefrescar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BtnRefrescar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnRefrescar.Image = ((System.Drawing.Image)(resources.GetObject("BtnRefrescar.Image")));
-            this.BtnRefrescar.Location = new System.Drawing.Point(1176, 518);
+            this.BtnRefrescar.Location = new System.Drawing.Point(1182, 420);
             this.BtnRefrescar.Name = "BtnRefrescar";
             this.BtnRefrescar.Size = new System.Drawing.Size(108, 38);
             this.BtnRefrescar.TabIndex = 3;
@@ -108,7 +115,7 @@
             this.BtnEliminarArticulo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BtnEliminarArticulo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnEliminarArticulo.Image = ((System.Drawing.Image)(resources.GetObject("BtnEliminarArticulo.Image")));
-            this.BtnEliminarArticulo.Location = new System.Drawing.Point(237, 518);
+            this.BtnEliminarArticulo.Location = new System.Drawing.Point(243, 420);
             this.BtnEliminarArticulo.Name = "BtnEliminarArticulo";
             this.BtnEliminarArticulo.Size = new System.Drawing.Size(143, 38);
             this.BtnEliminarArticulo.TabIndex = 1;
@@ -123,7 +130,7 @@
             this.BtnExportarPDF.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BtnExportarPDF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnExportarPDF.Image = ((System.Drawing.Image)(resources.GetObject("BtnExportarPDF.Image")));
-            this.BtnExportarPDF.Location = new System.Drawing.Point(961, 518);
+            this.BtnExportarPDF.Location = new System.Drawing.Point(967, 420);
             this.BtnExportarPDF.Name = "BtnExportarPDF";
             this.BtnExportarPDF.Size = new System.Drawing.Size(129, 38);
             this.BtnExportarPDF.TabIndex = 2;
@@ -132,11 +139,81 @@
             this.BtnExportarPDF.UseVisualStyleBackColor = true;
             this.BtnExportarPDF.Click += new System.EventHandler(this.BtnExportarPDF_Click);
             // 
+            // CboCampo
+            // 
+            this.CboCampo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboCampo.FormattingEnabled = true;
+            this.CboCampo.Location = new System.Drawing.Point(146, 541);
+            this.CboCampo.Name = "CboCampo";
+            this.CboCampo.Size = new System.Drawing.Size(121, 24);
+            this.CboCampo.TabIndex = 4;
+            this.CboCampo.SelectedIndexChanged += new System.EventHandler(this.CboCampo_SelectedIndexChanged);
+            // 
+            // CboCriterio
+            // 
+            this.CboCriterio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboCriterio.FormattingEnabled = true;
+            this.CboCriterio.Location = new System.Drawing.Point(381, 541);
+            this.CboCriterio.Name = "CboCriterio";
+            this.CboCriterio.Size = new System.Drawing.Size(121, 24);
+            this.CboCriterio.TabIndex = 5;
+            // 
+            // TxtFiltro
+            // 
+            this.TxtFiltro.Location = new System.Drawing.Point(613, 543);
+            this.TxtFiltro.Name = "TxtFiltro";
+            this.TxtFiltro.Size = new System.Drawing.Size(116, 22);
+            this.TxtFiltro.TabIndex = 6;
+            // 
+            // LblCampo
+            // 
+            this.LblCampo.AutoSize = true;
+            this.LblCampo.Location = new System.Drawing.Point(69, 549);
+            this.LblCampo.Name = "LblCampo";
+            this.LblCampo.Size = new System.Drawing.Size(51, 16);
+            this.LblCampo.TabIndex = 7;
+            this.LblCampo.Text = "Campo";
+            // 
+            // LblCriterio
+            // 
+            this.LblCriterio.AutoSize = true;
+            this.LblCriterio.Location = new System.Drawing.Point(307, 549);
+            this.LblCriterio.Name = "LblCriterio";
+            this.LblCriterio.Size = new System.Drawing.Size(49, 16);
+            this.LblCriterio.TabIndex = 8;
+            this.LblCriterio.Text = "Criterio";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(535, 549);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(36, 16);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Filtro";
+            // 
+            // BtnFiltrar
+            // 
+            this.BtnFiltrar.Location = new System.Drawing.Point(779, 533);
+            this.BtnFiltrar.Name = "BtnFiltrar";
+            this.BtnFiltrar.Size = new System.Drawing.Size(129, 38);
+            this.BtnFiltrar.TabIndex = 10;
+            this.BtnFiltrar.Text = "Filtrar";
+            this.BtnFiltrar.UseVisualStyleBackColor = true;
+            this.BtnFiltrar.Click += new System.EventHandler(this.BtnFiltrar_Click);
+            // 
             // frmArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1394, 620);
+            this.Controls.Add(this.BtnFiltrar);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.LblCriterio);
+            this.Controls.Add(this.LblCampo);
+            this.Controls.Add(this.TxtFiltro);
+            this.Controls.Add(this.CboCriterio);
+            this.Controls.Add(this.CboCampo);
             this.Controls.Add(this.BtnExportarPDF);
             this.Controls.Add(this.BtnEliminarArticulo);
             this.Controls.Add(this.BtnRefrescar);
@@ -161,5 +238,12 @@
         private System.Windows.Forms.Button BtnRefrescar;
         private System.Windows.Forms.Button BtnEliminarArticulo;
         private System.Windows.Forms.Button BtnExportarPDF;
+        private System.Windows.Forms.ComboBox CboCampo;
+        private System.Windows.Forms.ComboBox CboCriterio;
+        private System.Windows.Forms.TextBox TxtFiltro;
+        private System.Windows.Forms.Label LblCampo;
+        private System.Windows.Forms.Label LblCriterio;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button BtnFiltrar;
     }
 }

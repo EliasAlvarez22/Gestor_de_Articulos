@@ -55,12 +55,13 @@ namespace Negocio
             {
                 throw ex;
 
-            } finally { datos.cerrarConexion(); }
+            }
+            finally { datos.cerrarConexion(); }
         }
 
-        public void Agregar (Articulo Nuevo)
+        public void Agregar(Articulo Nuevo)
         {
-            AccesoDatos datos = new AccesoDatos();            
+            AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.SetearQuery("insert into ARTICULOS(Codigo,Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio) values" +
@@ -122,7 +123,91 @@ namespace Negocio
             {
 
                 throw ex;
-            }finally { datos.cerrarConexion();}
+            }
+            finally { datos.cerrarConexion(); }
+        }
+        public List<Articulo> Filtrar(string campo, string criterio, string filtro)
+        {
+
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string query = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion AS Marca, C.Descripcion AS Categoria, A.ImagenUrl, A.Precio, M.Id AS IdMarca, C.Id AS IdCategoria from dbo.ARTICULOS A, dbo.CATEGORIAS C, dbo.MARCAS M where A.IdMarca = M.Id AND A.IdCategoria = C.Id And ";
+
+
+
+                if (campo == "Precio")
+                {
+                    switch (criterio)
+                    {
+
+                        case "Mayor a":
+                            query += " A.Precio > " + filtro;
+                            break;
+                        case "Menor a":
+                            query += "A.Precio < " + filtro;
+                            break;
+                        case "Igual que":
+                            query += "A.Precio = " + filtro;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                if(campo == "Código")
+                {
+                    query += "A.Codigo like '" + filtro + "'";
+                }
+                if(campo == "Categorías")
+                {
+                    query += " C.Descripcion like '" + criterio + "'";
+                }
+                if (campo == "Marcas")
+                {
+                    query += " M.Descripcion like '" + criterio + "'";
+                }
+                
+
+
+
+                    datos.SetearQuery(query);
+                datos.EjecutarQuery();
+                SqlDataReader lector = datos.Lector;
+
+                while (lector.Read())
+                {
+                    Articulo articulo = new Articulo
+                    {
+                        Id = (int)lector["Id"],
+                        CodigoArticulo = (string)lector["Codigo"],
+                        Nombre = (string)lector["Nombre"],
+                        Descripcion = (string)lector["Descripcion"],
+                        Precio = (decimal)lector["Precio"],
+                        ImagenUrl = lector["ImagenUrl"] is DBNull ? null : (string)lector["ImagenUrl"],
+                        Marca = new Marca
+                        {
+                            Id = (int)lector["IdMarca"],
+                            Descripcion = (string)lector["Marca"],
+                        },
+                        Categoria = new Categoria
+                        {
+                            Id = (int)lector["IdCategoria"],
+                            Descripcion = (string)lector["Categoria"],
+                        },
+                    };
+                    lista.Add(articulo);
+
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            finally { datos.cerrarConexion(); }
         }
     }
 }

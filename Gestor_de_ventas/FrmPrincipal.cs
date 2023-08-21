@@ -38,7 +38,6 @@ namespace Gestor_de_ventas
                 formulario.Tag = formulario;
                 formulario.Show();
                 formulario.BringToFront();
-
             }
             else
             {
