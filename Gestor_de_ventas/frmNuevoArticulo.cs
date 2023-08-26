@@ -28,18 +28,15 @@ namespace Gestor_de_ventas
             Text = "Modificar Artículo";
             LblArticuloNuevo.Text = "Modificar Artículo";
         }
+        
 
-       
         // Para cerrar el form
-        private void BtnCancelar_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+
 
         // Para Agregar a la DB el nuevo Articulo o modificar el Articulo
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
-
+            FrmPrincipal principal = new FrmPrincipal();
             ArticuloNegocio Negocio = new ArticuloNegocio();
            
             try
@@ -49,7 +46,6 @@ namespace Gestor_de_ventas
 
                 if (articulo == null)
                     articulo = new Articulo();
-
 
                 articulo.CodigoArticulo = txtCodArticulo.Text;
                 articulo.Nombre = txtNombre.Text;
@@ -64,7 +60,7 @@ namespace Gestor_de_ventas
                 {
                     Negocio.ModificarArticulo(articulo);
                     MessageBox.Show("Modificado exitosamente");
-
+                    Close();
                 } //Agrega el articulo a la DB
                 else
                 {
@@ -78,7 +74,7 @@ namespace Gestor_de_ventas
 
                 MessageBox.Show(ex.ToString());
             }
-            Close();
+            // No lo cierro porque no pude hacer que se cierre el tabPage luego de que se agregue un articulo
         }
         private void frmNuevoArticulo_Load(object sender, EventArgs e)
         {
@@ -111,13 +107,11 @@ namespace Gestor_de_ventas
                 BtnAgregar.Text = "Modificar artículo";
             }
         }
-
         private void txtUrlImagen_Leave(object sender, EventArgs e)
         {
             string imagen = txtUrlImagen.Text;
             CargarImagen(imagen);
         }
-
         private void CargarImagen(string imagen)
         {
             try
@@ -195,7 +189,10 @@ namespace Gestor_de_ventas
            
             if (pbxCodigo.Visible == true || pbxNombre.Visible == true ||
                  pbxPrecio.Visible == true)
+            {
+                LblValidacionAgregar.Text = "Complete los datos necesarios";
                 return true;
+            }
             else
                 return false;
         }

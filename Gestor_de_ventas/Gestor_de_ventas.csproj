@@ -58,11 +58,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmAltaCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAltaCategoria.Designer.cs">
+      <DependentUpon>FrmAltaCategoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmArticulos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmArticulos.Designer.cs">
       <DependentUpon>frmArticulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCategorias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCategorias.Designer.cs">
+      <DependentUpon>FrmCategorias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmInicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmInicio.Designer.cs">
+      <DependentUpon>FrmInicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMarcas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMarcas.Designer.cs">
+      <DependentUpon>FrmMarcas.cs</DependentUpon>
     </Compile>
     <Compile Include="frmNuevoArticulo.cs">
       <SubType>Form</SubType>
@@ -78,8 +102,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmAltaCategoria.resx">
+      <DependentUpon>FrmAltaCategoria.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmArticulos.resx">
       <DependentUpon>frmArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCategorias.resx">
+      <DependentUpon>FrmCategorias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmInicio.resx">
+      <DependentUpon>FrmInicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMarcas.resx">
+      <DependentUpon>FrmMarcas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNuevoArticulo.resx">
       <DependentUpon>frmNuevoArticulo.cs</DependentUpon>

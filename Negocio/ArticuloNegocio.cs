@@ -7,11 +7,31 @@ using Dominio;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Security.AccessControl;
+using System.Xml.Schema;
 
 namespace Negocio
 {
     public class ArticuloNegocio
     {
+        public int ContarArticulos()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                int total;
+                string query = "select count(*) from ARTICULOS";
+                datos.SetearQuery(query);
+                datos.Abrirconexion();
+                total = (int)datos.Comando.ExecuteScalar();
+                return total;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
         public List<Articulo> ListarArticulos()
         {
             List<Articulo> lista = new List<Articulo>();
@@ -65,12 +85,12 @@ namespace Negocio
             try
             {
                 datos.SetearQuery("insert into ARTICULOS(Codigo,Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio) values" +
-                    "( @codigoArticulo,@nombre,@descripcion,@IdMarca,@IdCategoria,@Url,@precio)");
+                    "( @codigoArticulo,@nombre,@descripcion,@IdMarca,@IdCategoria,@Url,@precio)");                
                 datos.setearParametros("@codigoArticulo", Nuevo.CodigoArticulo);
                 datos.setearParametros("@nombre", Nuevo.Nombre);
-                datos.setearParametros("@descripcion", Nuevo.Descripcion);
-                datos.setearParametros("@IdMarca", Nuevo.Marca.Id);
-                datos.setearParametros("@IdCategoria", Nuevo.Categoria.Id);
+                datos.setearParametros("@descripcion", Nuevo.Descripcion);                
+                datos.setearParametros("@IdMarca", Nuevo.Marca.Id);                
+                datos.setearParametros("@IdCategoria", Nuevo.Categoria.Id);                
                 datos.setearParametros("@url", Nuevo.ImagenUrl);
                 datos.setearParametros("@precio", Nuevo.Precio);
                 datos.EjecutarNonQuery();

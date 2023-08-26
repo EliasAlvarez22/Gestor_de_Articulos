@@ -40,5 +40,23 @@ namespace Negocio
                 throw ex;
             }
         }
+        public int ContarMarcas()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                int totalMarcas;
+                string query = "select count(*) from MARCAS";
+                datos.SetearQuery(query);
+                datos.Abrirconexion();
+                totalMarcas = (int)datos.Comando.ExecuteScalar();
+                return totalMarcas;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

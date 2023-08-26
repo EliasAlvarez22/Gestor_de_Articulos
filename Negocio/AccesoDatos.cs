@@ -12,11 +12,14 @@ namespace Negocio
         private SqlConnection conexion;
         private SqlCommand comando;
         private SqlDataReader lector;
+        public SqlCommand Comando
+        {
+            get {return comando; }                                
+        }
         public SqlDataReader Lector
         {
-            get {return lector; }                                
+            get { return lector; }
         }
-
         public AccesoDatos()
         {
             conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_DB; integrated security = true");
@@ -29,6 +32,19 @@ namespace Negocio
             comando.CommandText = query;
         }
 
+        public void Abrirconexion()
+        {
+            try
+            {
+                comando.Connection = conexion;
+                conexion.Open();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         public void EjecutarQuery() 
         {
             try
