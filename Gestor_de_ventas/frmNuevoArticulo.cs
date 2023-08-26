@@ -66,7 +66,8 @@ namespace Gestor_de_ventas
                 {
                     Negocio.Agregar(articulo);
                     MessageBox.Show("Agregado exitosamente");
-
+                    BtnAgregar.Enabled = false;
+                    LblValidacionAgregar.Text = "Artículo agregado, puede cerrar la ventana";
                 }
             }
             catch (Exception ex)

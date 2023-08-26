@@ -61,7 +61,7 @@
             // BtnAgregar
             // 
             this.BtnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAgregar.Location = new System.Drawing.Point(386, 406);
+            this.BtnAgregar.Location = new System.Drawing.Point(367, 422);
             this.BtnAgregar.Name = "BtnAgregar";
             this.BtnAgregar.Size = new System.Drawing.Size(240, 58);
             this.BtnAgregar.TabIndex = 7;
@@ -214,7 +214,7 @@
             // PbxImagen
             // 
             this.PbxImagen.Image = ((System.Drawing.Image)(resources.GetObject("PbxImagen.Image")));
-            this.PbxImagen.Location = new System.Drawing.Point(827, 309);
+            this.PbxImagen.Location = new System.Drawing.Point(832, 275);
             this.PbxImagen.Name = "PbxImagen";
             this.PbxImagen.Size = new System.Drawing.Size(340, 288);
             this.PbxImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -287,7 +287,7 @@
             this.LblValidacionAgregar.AutoSize = true;
             this.LblValidacionAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblValidacionAgregar.ForeColor = System.Drawing.Color.Red;
-            this.LblValidacionAgregar.Location = new System.Drawing.Point(345, 392);
+            this.LblValidacionAgregar.Location = new System.Drawing.Point(346, 376);
             this.LblValidacionAgregar.Name = "LblValidacionAgregar";
             this.LblValidacionAgregar.Size = new System.Drawing.Size(0, 29);
             this.LblValidacionAgregar.TabIndex = 26;

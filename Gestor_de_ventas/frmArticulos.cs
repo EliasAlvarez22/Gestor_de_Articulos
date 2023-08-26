@@ -230,7 +230,6 @@ namespace Gestor_de_ventas
                 MessageBox.Show(ex.ToString());
             }
         }
-
         private void BtnFiltrar_Click(object sender, EventArgs e)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
@@ -251,7 +250,7 @@ namespace Gestor_de_ventas
                 bool ValicacionFiltro = CamposAvalidar.Any(campo => CboCampo.Text.Contains(campo)) && TxtFiltro.Text == "";
                 if (ValicacionFiltro)
                 {
-                    LblValidacionFiltro.Text = "Debe tener un filtro este búsqueda";
+                    LblValidacionFiltro.Text = "Debe tener un filtro esta búsqueda";
                     return;
                 }
                 else

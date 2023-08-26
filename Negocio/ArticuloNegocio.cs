@@ -9,6 +9,10 @@ using System.Globalization;
 using System.Security.AccessControl;
 using System.Xml.Schema;
 
+
+//HAY Que ver si: Se hace obligatorio la marca y categoria.. O se modifica la consulta relacionada, 
+//para que traiga tambien vacios en el caso que no tengan.. Podria ser eso..
+
 namespace Negocio
 {
     public class ArticuloNegocio
@@ -36,55 +40,60 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string query = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion AS Marca, C.Descripcion AS Categoria, A.ImagenUrl, A.Precio, M.Id AS IdMarca, C.Id AS IdCategoria from dbo.ARTICULOS A, dbo.CATEGORIAS C, dbo.MARCAS M where A.IdMarca = M.Id AND A.IdCategoria = C.Id";
+                string query ="SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, Mar.Descripcion AS Marca, C.Descripcion AS Categoria, A.ImagenUrl, A.Precio, C.Id as IdCategoria, Mar.Id AS IdMarca FROM ARTICULOS A LEFT JOIN MARCAS Mar ON A.IdMarca = Mar.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id";
 
                 datos.SetearQuery(query);
                 datos.EjecutarQuery();
                 SqlDataReader lector = datos.Lector;
 
-                while (lector.Read())
+                if (lector.HasRows)
                 {
-                    Articulo articulo = new Articulo
+                    while (lector.Read())
                     {
-                        Id = (int)lector["Id"],
-                        CodigoArticulo = (string)lector["Codigo"],
-                        Nombre = (string)lector["Nombre"],
-                        Descripcion = (string)lector["Descripcion"],
-                        Precio = (decimal)lector["Precio"],
-                        ImagenUrl = lector["ImagenUrl"] is DBNull ? null : (string)lector["ImagenUrl"],
-                        Marca = new Marca
+                        Articulo articulo = new();
+                        articulo.Id = (int)lector["Id"];
+                        articulo.CodigoArticulo = (string)lector["Codigo"];
+                        articulo.Nombre = (string)lector["Nombre"];
+                        articulo.Descripcion = (string)lector["Descripcion"];
+                        articulo.Precio = (decimal)lector["Precio"];
+                        articulo.ImagenUrl = lector["ImagenUrl"] is DBNull ? null : (string)lector["ImagenUrl"];
+                        articulo.Marca = new Marca
                         {
                             Id = (int)lector["IdMarca"],
                             Descripcion = (string)lector["Marca"],
-                        },
-                        Categoria = new Categoria
+                        };
+                        articulo.Categoria = new Categoria
                         {
                             Id = (int)lector["IdCategoria"],
                             Descripcion = (string)lector["Categoria"],
-                        },
-                    };
-                    lista.Add(articulo);
+                        };
+                        lista.Add(articulo);
+                    }
                 }
                 return lista;
             }
+
             catch (Exception ex)
             {
                 throw ex;
             }
             finally { datos.cerrarConexion(); }
         }
+        
         public void Agregar(Articulo Nuevo)
         {
-            AccesoDatos datos = new AccesoDatos();
+            AccesoDatos datos = new ();
             try
             {
                 datos.SetearQuery("insert into ARTICULOS(Codigo,Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio) values" +
-                    "( @codigoArticulo,@nombre,@descripcion,@IdMarca,@IdCategoria,@Url,@precio)");                
+                    "( @codigoArticulo,@nombre,@descripcion,@IdMarca,@IdCategoria,@Url,@precio)");
                 datos.setearParametros("@codigoArticulo", Nuevo.CodigoArticulo);
                 datos.setearParametros("@nombre", Nuevo.Nombre);
-                datos.setearParametros("@descripcion", Nuevo.Descripcion);                
-                datos.setearParametros("@IdMarca", Nuevo.Marca.Id);                
-                datos.setearParametros("@IdCategoria", Nuevo.Categoria.Id);                
+                datos.setearParametros("@descripcion", Nuevo.Descripcion);
+                //Si es null Marca o Categoria se coloca sin Marca o Categoria.
+                datos.setearParametros("@IdMarca", Nuevo.Marca == null ? 6 : Nuevo.Marca.Id);
+                datos.setearParametros("@IdCategoria", Nuevo.Categoria == null ? 5 : Nuevo.Categoria.Id);
+
                 datos.setearParametros("@url", Nuevo.ImagenUrl);
                 datos.setearParametros("@precio", Nuevo.Precio);
                 datos.EjecutarNonQuery();
