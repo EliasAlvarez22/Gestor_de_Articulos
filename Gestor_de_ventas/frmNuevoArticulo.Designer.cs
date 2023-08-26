@@ -239,9 +239,9 @@
             this.BtnAgregarimagen.AutoSize = true;
             this.BtnAgregarimagen.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnAgregarimagen.Image = ((System.Drawing.Image)(resources.GetObject("BtnAgregarimagen.Image")));
-            this.BtnAgregarimagen.Location = new System.Drawing.Point(842, 206);
+            this.BtnAgregarimagen.Location = new System.Drawing.Point(846, 164);
             this.BtnAgregarimagen.Name = "BtnAgregarimagen";
-            this.BtnAgregarimagen.Size = new System.Drawing.Size(38, 38);
+            this.BtnAgregarimagen.Size = new System.Drawing.Size(48, 43);
             this.BtnAgregarimagen.TabIndex = 8;
             this.BtnAgregarimagen.UseVisualStyleBackColor = true;
             this.BtnAgregarimagen.Click += new System.EventHandler(this.BtnAgregarimagen_Click);

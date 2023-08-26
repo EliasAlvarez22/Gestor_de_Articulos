@@ -182,7 +182,6 @@ namespace Gestor_de_ventas
                 OcultarColumnas();
             }
         }
-
         private void CboCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
             CategoriaNegocio NegocioCategorias = new CategoriaNegocio();
@@ -214,7 +213,6 @@ namespace Gestor_de_ventas
                     CboCriterio.SelectedIndex = -1;
                     TxtFiltro.Enabled = false;
                     TxtFiltro.Text = "";
-
                 }
                 if (opcion == "Categorías")
                 {
@@ -238,12 +236,29 @@ namespace Gestor_de_ventas
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
-                if(CboCampo.Text == "" && CboCriterio.Text == "")                
+                // Validaciones
+                string[] CamposAvalidar = {"Precio","Código" };                
+                if (CboCampo.Text == "" && CboCriterio.Text == "")
+                {
                     LblValidacionFiltro.Text = "Elija un campo y un criterio";
-
-                else if(CboCriterio.Text == "")
+                    return;
+                }
+                else if (CboCriterio.Text == "")
+                {
                     LblValidacionFiltro.Text = "Elija un criterio";
-
+                    return;
+                }
+                bool ValicacionFiltro = CamposAvalidar.Any(campo => CboCampo.Text.Contains(campo)) && TxtFiltro.Text == "";
+                if (ValicacionFiltro)
+                {
+                    LblValidacionFiltro.Text = "Debe tener un filtro este búsqueda";
+                    return;
+                }
+                else
+                {
+                    LblValidacionFiltro.Text = "";
+                }
+                //Logica
                 List<Articulo> listaFiltrada;
                 DgvArticulos.DataSource = null;
                 listaFiltrada = negocio.Filtrar(CboCampo.Text, CboCriterio.Text, TxtFiltro.Text);
@@ -255,17 +270,12 @@ namespace Gestor_de_ventas
                     DgvArticulos.Rows[0].Selected = true;
                     DgvArticulos.CurrentCell = DgvArticulos.Rows[0].Cells[1];
                 }
-
-
-
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString());
             }
         }
-
         private void CboCriterio_SelectedIndexChanged(object sender, EventArgs e)
         {
             LblValidacionFiltro.Text = "";
