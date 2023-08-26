@@ -43,6 +43,7 @@
             this.LblCriterio = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.BtnFiltrar = new System.Windows.Forms.Button();
+            this.LblValidacionFiltro = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DgvArticulos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,7 +58,7 @@
             this.DgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvArticulos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.DgvArticulos.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
-            this.DgvArticulos.Location = new System.Drawing.Point(45, 121);
+            this.DgvArticulos.Location = new System.Drawing.Point(45, 91);
             this.DgvArticulos.MultiSelect = false;
             this.DgvArticulos.Name = "DgvArticulos";
             this.DgvArticulos.RowHeadersVisible = false;
@@ -67,7 +68,7 @@
             this.DgvArticulos.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DgvArticulos.RowTemplate.Height = 40;
             this.DgvArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvArticulos.Size = new System.Drawing.Size(1343, 315);
+            this.DgvArticulos.Size = new System.Drawing.Size(1337, 218);
             this.DgvArticulos.TabIndex = 1;
             this.DgvArticulos.SelectionChanged += new System.EventHandler(this.DgvArticulos_SelectionChanged);
             // 
@@ -76,7 +77,7 @@
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.ForeColor = System.Drawing.Color.White;
-            this.lblTitulo.Location = new System.Drawing.Point(37, 42);
+            this.lblTitulo.Location = new System.Drawing.Point(37, 30);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(338, 46);
             this.lblTitulo.TabIndex = 2;
@@ -90,7 +91,7 @@
             this.BtnEditarArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnEditarArticulo.Image = ((System.Drawing.Image)(resources.GetObject("BtnEditarArticulo.Image")));
             this.BtnEditarArticulo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnEditarArticulo.Location = new System.Drawing.Point(97, 452);
+            this.BtnEditarArticulo.Location = new System.Drawing.Point(88, 354);
             this.BtnEditarArticulo.Name = "BtnEditarArticulo";
             this.BtnEditarArticulo.Size = new System.Drawing.Size(130, 38);
             this.BtnEditarArticulo.TabIndex = 0;
@@ -106,7 +107,7 @@
             this.BtnRefrescar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BtnRefrescar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnRefrescar.Image = ((System.Drawing.Image)(resources.GetObject("BtnRefrescar.Image")));
-            this.BtnRefrescar.Location = new System.Drawing.Point(1207, 452);
+            this.BtnRefrescar.Location = new System.Drawing.Point(1198, 354);
             this.BtnRefrescar.Name = "BtnRefrescar";
             this.BtnRefrescar.Size = new System.Drawing.Size(108, 38);
             this.BtnRefrescar.TabIndex = 3;
@@ -121,7 +122,7 @@
             this.BtnEliminarArticulo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BtnEliminarArticulo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnEliminarArticulo.Image = ((System.Drawing.Image)(resources.GetObject("BtnEliminarArticulo.Image")));
-            this.BtnEliminarArticulo.Location = new System.Drawing.Point(268, 452);
+            this.BtnEliminarArticulo.Location = new System.Drawing.Point(261, 354);
             this.BtnEliminarArticulo.Name = "BtnEliminarArticulo";
             this.BtnEliminarArticulo.Size = new System.Drawing.Size(143, 38);
             this.BtnEliminarArticulo.TabIndex = 1;
@@ -136,7 +137,7 @@
             this.BtnExportarPDF.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BtnExportarPDF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnExportarPDF.Image = ((System.Drawing.Image)(resources.GetObject("BtnExportarPDF.Image")));
-            this.BtnExportarPDF.Location = new System.Drawing.Point(992, 452);
+            this.BtnExportarPDF.Location = new System.Drawing.Point(975, 354);
             this.BtnExportarPDF.Name = "BtnExportarPDF";
             this.BtnExportarPDF.Size = new System.Drawing.Size(129, 38);
             this.BtnExportarPDF.TabIndex = 2;
@@ -149,7 +150,7 @@
             // 
             this.CboCampo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboCampo.FormattingEnabled = true;
-            this.CboCampo.Location = new System.Drawing.Point(169, 569);
+            this.CboCampo.Location = new System.Drawing.Point(179, 440);
             this.CboCampo.Name = "CboCampo";
             this.CboCampo.Size = new System.Drawing.Size(121, 24);
             this.CboCampo.TabIndex = 4;
@@ -159,14 +160,15 @@
             // 
             this.CboCriterio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboCriterio.FormattingEnabled = true;
-            this.CboCriterio.Location = new System.Drawing.Point(404, 569);
+            this.CboCriterio.Location = new System.Drawing.Point(414, 440);
             this.CboCriterio.Name = "CboCriterio";
             this.CboCriterio.Size = new System.Drawing.Size(121, 24);
             this.CboCriterio.TabIndex = 5;
+            this.CboCriterio.SelectedIndexChanged += new System.EventHandler(this.CboCriterio_SelectedIndexChanged);
             // 
             // TxtFiltro
             // 
-            this.TxtFiltro.Location = new System.Drawing.Point(631, 569);
+            this.TxtFiltro.Location = new System.Drawing.Point(641, 440);
             this.TxtFiltro.Name = "TxtFiltro";
             this.TxtFiltro.Size = new System.Drawing.Size(162, 22);
             this.TxtFiltro.TabIndex = 6;
@@ -176,7 +178,7 @@
             this.LblCampo.AutoSize = true;
             this.LblCampo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblCampo.ForeColor = System.Drawing.Color.White;
-            this.LblCampo.Location = new System.Drawing.Point(93, 571);
+            this.LblCampo.Location = new System.Drawing.Point(103, 442);
             this.LblCampo.Name = "LblCampo";
             this.LblCampo.Size = new System.Drawing.Size(67, 22);
             this.LblCampo.TabIndex = 7;
@@ -187,7 +189,7 @@
             this.LblCriterio.AutoSize = true;
             this.LblCriterio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblCriterio.ForeColor = System.Drawing.Color.White;
-            this.LblCriterio.Location = new System.Drawing.Point(316, 571);
+            this.LblCriterio.Location = new System.Drawing.Point(326, 442);
             this.LblCriterio.Name = "LblCriterio";
             this.LblCriterio.Size = new System.Drawing.Size(68, 22);
             this.LblCriterio.TabIndex = 8;
@@ -198,7 +200,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(557, 571);
+            this.label3.Location = new System.Drawing.Point(567, 442);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(50, 22);
             this.label3.TabIndex = 9;
@@ -206,7 +208,7 @@
             // 
             // BtnFiltrar
             // 
-            this.BtnFiltrar.Location = new System.Drawing.Point(844, 561);
+            this.BtnFiltrar.Location = new System.Drawing.Point(854, 432);
             this.BtnFiltrar.Name = "BtnFiltrar";
             this.BtnFiltrar.Size = new System.Drawing.Size(129, 38);
             this.BtnFiltrar.TabIndex = 10;
@@ -214,12 +216,23 @@
             this.BtnFiltrar.UseVisualStyleBackColor = true;
             this.BtnFiltrar.Click += new System.EventHandler(this.BtnFiltrar_Click);
             // 
+            // LblValidacionFiltro
+            // 
+            this.LblValidacionFiltro.AutoSize = true;
+            this.LblValidacionFiltro.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblValidacionFiltro.ForeColor = System.Drawing.Color.White;
+            this.LblValidacionFiltro.Location = new System.Drawing.Point(532, 500);
+            this.LblValidacionFiltro.Name = "LblValidacionFiltro";
+            this.LblValidacionFiltro.Size = new System.Drawing.Size(0, 22);
+            this.LblValidacionFiltro.TabIndex = 11;
+            // 
             // frmArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
-            this.ClientSize = new System.Drawing.Size(1394, 620);
+            this.ClientSize = new System.Drawing.Size(1394, 699);
+            this.Controls.Add(this.LblValidacionFiltro);
             this.Controls.Add(this.BtnFiltrar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.LblCriterio);
@@ -258,5 +271,6 @@
         private System.Windows.Forms.Label LblCriterio;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button BtnFiltrar;
+        private System.Windows.Forms.Label LblValidacionFiltro;
     }
 }

@@ -34,6 +34,8 @@ namespace Gestor_de_ventas
                 ListaArticulos = negocio.ListarArticulos();
                 DgvArticulos.DataSource = ListaArticulos;
                 OcultarColumnas();
+                DgvArticulos.Rows[0].Selected = true;
+                DgvArticulos.CurrentCell = DgvArticulos.Rows[0].Cells[1];
 
                 //Campos
                 CboCampo.Items.Clear();
@@ -166,14 +168,18 @@ namespace Gestor_de_ventas
 
             //Valida si no tiene articulos, que no haga nada.
             if (DgvArticulos.RowCount == 0)                          
-                return;
-
+                return;           
             Articulo seleccionado = DgvArticulos.CurrentRow.DataBoundItem as Articulo;
             DialogResult resultado = MessageBox.Show("Seguro que desea eliminar?", "Eliminar artículo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (resultado == DialogResult.Yes)
             {
                 negocio.EliminarArticulo(seleccionado.Id);
                 MessageBox.Show("Artículo eliminado correctamente");
+
+                ListaArticulos = negocio.ListarArticulos();
+                DgvArticulos.DataSource = null;
+                DgvArticulos.DataSource = ListaArticulos;
+                OcultarColumnas();
             }
         }
 
@@ -232,6 +238,12 @@ namespace Gestor_de_ventas
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
+                if(CboCampo.Text == "" && CboCriterio.Text == "")                
+                    LblValidacionFiltro.Text = "Elija un campo y un criterio";
+
+                else if(CboCriterio.Text == "")
+                    LblValidacionFiltro.Text = "Elija un criterio";
+
                 List<Articulo> listaFiltrada;
                 DgvArticulos.DataSource = null;
                 listaFiltrada = negocio.Filtrar(CboCampo.Text, CboCriterio.Text, TxtFiltro.Text);
@@ -252,6 +264,11 @@ namespace Gestor_de_ventas
 
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void CboCriterio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LblValidacionFiltro.Text = "";
         }
     }
 }

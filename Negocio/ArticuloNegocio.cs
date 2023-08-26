@@ -27,10 +27,8 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
-
         }
         public List<Articulo> ListarArticulos()
         {
@@ -66,19 +64,15 @@ namespace Negocio
                         },
                     };
                     lista.Add(articulo);
-
                 }
-
                 return lista;
             }
             catch (Exception ex)
             {
                 throw ex;
-
             }
             finally { datos.cerrarConexion(); }
         }
-
         public void Agregar(Articulo Nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -97,7 +91,6 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -106,7 +99,6 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-
                 datos.SetearQuery("UPDATE ARTICULOS SET Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion," +
                 " IdMarca = @idMarca, IdCategoria = @idCategoria, ImagenUrl = @imagenUrl, Precio = @precio where Id = @id");
 
@@ -130,32 +122,28 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         public void EliminarArticulo(int id)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearQuery("delete from ARTICULOS where Id = @id");
+                datos.SetearQuery("delete from ARTICULOS where id = @id");
                 datos.setearParametros("@id", id);
+                datos.EjecutarNonQuery();
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally { datos.cerrarConexion(); }
         }
         public List<Articulo> Filtrar(string campo, string criterio, string filtro)
         {
-
             List<Articulo> lista = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 string query = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion AS Marca, C.Descripcion AS Categoria, A.ImagenUrl, A.Precio, M.Id AS IdMarca, C.Id AS IdCategoria from dbo.ARTICULOS A, dbo.CATEGORIAS C, dbo.MARCAS M where A.IdMarca = M.Id AND A.IdCategoria = C.Id And ";
-
-
 
                 if (campo == "Precio")
                 {
@@ -188,10 +176,7 @@ namespace Negocio
                     query += " M.Descripcion like '" + criterio + "'";
                 }
                 
-
-
-
-                    datos.SetearQuery(query);
+                datos.SetearQuery(query);
                 datos.EjecutarQuery();
                 SqlDataReader lector = datos.Lector;
 
@@ -217,15 +202,12 @@ namespace Negocio
                         },
                     };
                     lista.Add(articulo);
-
                 }
-
                 return lista;
             }
             catch (Exception ex)
             {
                 throw ex;
-
             }
             finally { datos.cerrarConexion(); }
         }
