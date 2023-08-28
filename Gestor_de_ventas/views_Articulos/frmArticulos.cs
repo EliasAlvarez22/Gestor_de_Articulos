@@ -30,11 +30,14 @@ namespace Gestor_de_ventas
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
+                if (DgvArticulos.Rows.Count < 0)
+                    return;
+
+                
                 //Grid de articulos
                 ListaArticulos = negocio.ListarArticulos();
                 DgvArticulos.DataSource = ListaArticulos;
                 OcultarColumnas();
-                DgvArticulos.Rows[0].Selected = true;
                 DgvArticulos.CurrentCell = DgvArticulos.Rows[0].Cells[1];
 
                 //Campos

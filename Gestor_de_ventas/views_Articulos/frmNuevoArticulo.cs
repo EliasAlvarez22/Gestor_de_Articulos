@@ -36,7 +36,6 @@ namespace Gestor_de_ventas
         // Para Agregar a la DB el nuevo Articulo o modificar el Articulo
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            FrmPrincipal principal = new FrmPrincipal();
             ArticuloNegocio Negocio = new ArticuloNegocio();
            
             try

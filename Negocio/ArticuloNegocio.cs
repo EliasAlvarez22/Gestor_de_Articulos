@@ -36,8 +36,8 @@ namespace Negocio
         }
         public List<Articulo> ListarArticulos()
         {
-            List<Articulo> lista = new List<Articulo>();
-            AccesoDatos datos = new AccesoDatos();
+            List<Articulo> lista = new();
+            AccesoDatos datos = new ();
             try
             {
                 string query ="SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, Mar.Descripcion AS Marca, C.Descripcion AS Categoria, A.ImagenUrl, A.Precio, C.Id as IdCategoria, Mar.Id AS IdMarca FROM ARTICULOS A LEFT JOIN MARCAS Mar ON A.IdMarca = Mar.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id";
@@ -91,9 +91,8 @@ namespace Negocio
                 datos.setearParametros("@nombre", Nuevo.Nombre);
                 datos.setearParametros("@descripcion", Nuevo.Descripcion);
                 //Si es null Marca o Categoria se coloca sin Marca o Categoria.
-                datos.setearParametros("@IdMarca", Nuevo.Marca == null ? 6 : Nuevo.Marca.Id);
+                datos.setearParametros("@IdMarca", Nuevo.Marca == null ? 9 : Nuevo.Marca.Id);
                 datos.setearParametros("@IdCategoria", Nuevo.Categoria == null ? 5 : Nuevo.Categoria.Id);
-
                 datos.setearParametros("@url", Nuevo.ImagenUrl);
                 datos.setearParametros("@precio", Nuevo.Precio);
                 datos.EjecutarNonQuery();
@@ -105,7 +104,7 @@ namespace Negocio
         }
         public void ModificarArticulo(Articulo articulo)
         {
-            AccesoDatos datos = new AccesoDatos();
+            AccesoDatos datos = new ();
             try
             {
                 datos.SetearQuery("UPDATE ARTICULOS SET Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion," +
@@ -172,11 +171,11 @@ namespace Negocio
                             break;
                     }
                 }
-                if(campo == "Código")
+                if (campo == "Código")
                 {
                     query += "A.Codigo like '" + filtro + "'";
                 }
-                if(campo == "Categorías")
+                if (campo == "Categorías")
                 {
                     query += " C.Descripcion like '" + criterio + "'";
                 }
@@ -184,35 +183,36 @@ namespace Negocio
                 {
                     query += " M.Descripcion like '" + criterio + "'";
                 }
-                
                 datos.SetearQuery(query);
                 datos.EjecutarQuery();
                 SqlDataReader lector = datos.Lector;
 
-                while (lector.Read())
+                if (lector.HasRows)
                 {
-                    Articulo articulo = new Articulo
+                    while (lector.Read())
                     {
-                        Id = (int)lector["Id"],
-                        CodigoArticulo = (string)lector["Codigo"],
-                        Nombre = (string)lector["Nombre"],
-                        Descripcion = (string)lector["Descripcion"],
-                        Precio = (decimal)lector["Precio"],
-                        ImagenUrl = lector["ImagenUrl"] is DBNull ? null : (string)lector["ImagenUrl"],
-                        Marca = new Marca
+                        Articulo articulo = new();
+                        articulo.Id = (int)lector["Id"];
+                        articulo.CodigoArticulo = (string)lector["Codigo"];
+                        articulo.Nombre = (string)lector["Nombre"];
+                        articulo.Descripcion = (string)lector["Descripcion"];
+                        articulo.Precio = (decimal)lector["Precio"];
+                        articulo.ImagenUrl = lector["ImagenUrl"] is DBNull ? null : (string)lector["ImagenUrl"];
+                        articulo.Marca = new Marca
                         {
                             Id = (int)lector["IdMarca"],
                             Descripcion = (string)lector["Marca"],
-                        },
-                        Categoria = new Categoria
+                        };
+                        articulo.Categoria = new Categoria
                         {
                             Id = (int)lector["IdCategoria"],
                             Descripcion = (string)lector["Categoria"],
-                        },
-                    };
-                    lista.Add(articulo);
+                        };
+                        lista.Add(articulo);
+                    }
                 }
                 return lista;
+
             }
             catch (Exception ex)
             {

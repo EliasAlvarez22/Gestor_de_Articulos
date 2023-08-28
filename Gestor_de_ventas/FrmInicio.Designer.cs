@@ -43,7 +43,7 @@
             // 
             this.pbxInicio.Image = ((System.Drawing.Image)(resources.GetObject("pbxInicio.Image")));
             this.pbxInicio.InitialImage = null;
-            this.pbxInicio.Location = new System.Drawing.Point(407, 200);
+            this.pbxInicio.Location = new System.Drawing.Point(389, 132);
             this.pbxInicio.Name = "pbxInicio";
             this.pbxInicio.Size = new System.Drawing.Size(718, 481);
             this.pbxInicio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -65,7 +65,7 @@
             // 
             this.LblTotalArticulos.AutoSize = true;
             this.LblTotalArticulos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTotalArticulos.Location = new System.Drawing.Point(12, 200);
+            this.LblTotalArticulos.Location = new System.Drawing.Point(12, 160);
             this.LblTotalArticulos.Name = "LblTotalArticulos";
             this.LblTotalArticulos.Size = new System.Drawing.Size(163, 25);
             this.LblTotalArticulos.TabIndex = 7;
@@ -75,7 +75,7 @@
             // 
             this.LblContadorArticulos.AutoSize = true;
             this.LblContadorArticulos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblContadorArticulos.Location = new System.Drawing.Point(307, 200);
+            this.LblContadorArticulos.Location = new System.Drawing.Point(307, 160);
             this.LblContadorArticulos.Name = "LblContadorArticulos";
             this.LblContadorArticulos.Size = new System.Drawing.Size(0, 25);
             this.LblContadorArticulos.TabIndex = 8;
@@ -84,7 +84,7 @@
             // 
             this.LblTotalMarcas.AutoSize = true;
             this.LblTotalMarcas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTotalMarcas.Location = new System.Drawing.Point(12, 267);
+            this.LblTotalMarcas.Location = new System.Drawing.Point(12, 227);
             this.LblTotalMarcas.Name = "LblTotalMarcas";
             this.LblTotalMarcas.Size = new System.Drawing.Size(153, 25);
             this.LblTotalMarcas.TabIndex = 9;
@@ -94,7 +94,7 @@
             // 
             this.LblContadorMarcas.AutoSize = true;
             this.LblContadorMarcas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblContadorMarcas.Location = new System.Drawing.Point(307, 267);
+            this.LblContadorMarcas.Location = new System.Drawing.Point(307, 227);
             this.LblContadorMarcas.Name = "LblContadorMarcas";
             this.LblContadorMarcas.Size = new System.Drawing.Size(0, 25);
             this.LblContadorMarcas.TabIndex = 10;
@@ -103,7 +103,7 @@
             // 
             this.btnActualizarTotales.BackColor = System.Drawing.Color.White;
             this.btnActualizarTotales.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActualizarTotales.Location = new System.Drawing.Point(12, 132);
+            this.btnActualizarTotales.Location = new System.Drawing.Point(12, 92);
             this.btnActualizarTotales.Name = "btnActualizarTotales";
             this.btnActualizarTotales.Size = new System.Drawing.Size(246, 43);
             this.btnActualizarTotales.TabIndex = 11;

@@ -52,6 +52,7 @@
             this.pbxNombre = new System.Windows.Forms.PictureBox();
             this.pbxPrecio = new System.Windows.Forms.PictureBox();
             this.LblValidacionAgregar = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PbxImagen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCodigo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxNombre)).BeginInit();
@@ -64,7 +65,7 @@
             this.BtnAgregar.Location = new System.Drawing.Point(367, 422);
             this.BtnAgregar.Name = "BtnAgregar";
             this.BtnAgregar.Size = new System.Drawing.Size(240, 58);
-            this.BtnAgregar.TabIndex = 7;
+            this.BtnAgregar.TabIndex = 8;
             this.BtnAgregar.Text = "Agregar";
             this.BtnAgregar.UseVisualStyleBackColor = true;
             this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
@@ -73,7 +74,7 @@
             // 
             this.LblCodigoArticulo.AutoSize = true;
             this.LblCodigoArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.LblCodigoArticulo.ForeColor = System.Drawing.SystemColors.Control;
+            this.LblCodigoArticulo.ForeColor = System.Drawing.Color.White;
             this.LblCodigoArticulo.Location = new System.Drawing.Point(50, 110);
             this.LblCodigoArticulo.Name = "LblCodigoArticulo";
             this.LblCodigoArticulo.Size = new System.Drawing.Size(210, 29);
@@ -91,7 +92,7 @@
             // 
             this.LblMarca.AutoSize = true;
             this.LblMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.LblMarca.ForeColor = System.Drawing.SystemColors.Control;
+            this.LblMarca.ForeColor = System.Drawing.Color.White;
             this.LblMarca.Location = new System.Drawing.Point(50, 309);
             this.LblMarca.Name = "LblMarca";
             this.LblMarca.Size = new System.Drawing.Size(79, 29);
@@ -109,7 +110,7 @@
             // 
             this.LblNombre.AutoSize = true;
             this.LblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.LblNombre.ForeColor = System.Drawing.SystemColors.Control;
+            this.LblNombre.ForeColor = System.Drawing.Color.White;
             this.LblNombre.Location = new System.Drawing.Point(50, 174);
             this.LblNombre.Name = "LblNombre";
             this.LblNombre.Size = new System.Drawing.Size(101, 29);
@@ -127,7 +128,7 @@
             // 
             this.LblDescripcion.AutoSize = true;
             this.LblDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.LblDescripcion.ForeColor = System.Drawing.SystemColors.Control;
+            this.LblDescripcion.ForeColor = System.Drawing.Color.White;
             this.LblDescripcion.Location = new System.Drawing.Point(50, 244);
             this.LblDescripcion.Name = "LblDescripcion";
             this.LblDescripcion.Size = new System.Drawing.Size(141, 29);
@@ -158,7 +159,7 @@
             this.txtPrecio.Location = new System.Drawing.Point(658, 244);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(165, 22);
-            this.txtPrecio.TabIndex = 6;
+            this.txtPrecio.TabIndex = 7;
             this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
             // 
             // LblPrecio
@@ -166,7 +167,7 @@
             this.LblPrecio.AutoSize = true;
             this.LblPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblPrecio.ForeColor = System.Drawing.Color.White;
-            this.LblPrecio.Location = new System.Drawing.Point(507, 244);
+            this.LblPrecio.Location = new System.Drawing.Point(508, 237);
             this.LblPrecio.Name = "LblPrecio";
             this.LblPrecio.Size = new System.Drawing.Size(83, 29);
             this.LblPrecio.TabIndex = 12;
@@ -214,23 +215,23 @@
             // PbxImagen
             // 
             this.PbxImagen.Image = ((System.Drawing.Image)(resources.GetObject("PbxImagen.Image")));
-            this.PbxImagen.Location = new System.Drawing.Point(832, 275);
+            this.PbxImagen.Location = new System.Drawing.Point(846, 237);
             this.PbxImagen.Name = "PbxImagen";
-            this.PbxImagen.Size = new System.Drawing.Size(340, 288);
+            this.PbxImagen.Size = new System.Drawing.Size(453, 307);
             this.PbxImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PbxImagen.TabIndex = 17;
             this.PbxImagen.TabStop = false;
             // 
             // BtnInicializar
             // 
-            this.BtnInicializar.AutoSize = true;
             this.BtnInicializar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnInicializar.Image = ((System.Drawing.Image)(resources.GetObject("BtnInicializar.Image")));
             this.BtnInicializar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnInicializar.Location = new System.Drawing.Point(1019, 108);
+            this.BtnInicializar.Location = new System.Drawing.Point(104, 434);
             this.BtnInicializar.Name = "BtnInicializar";
-            this.BtnInicializar.Size = new System.Drawing.Size(45, 46);
+            this.BtnInicializar.Size = new System.Drawing.Size(47, 46);
             this.BtnInicializar.TabIndex = 9;
+            this.BtnInicializar.TabStop = false;
             this.BtnInicializar.UseVisualStyleBackColor = true;
             this.BtnInicializar.Click += new System.EventHandler(this.BtnInicializar_Click);
             // 
@@ -242,7 +243,7 @@
             this.BtnAgregarimagen.Location = new System.Drawing.Point(846, 164);
             this.BtnAgregarimagen.Name = "BtnAgregarimagen";
             this.BtnAgregarimagen.Size = new System.Drawing.Size(48, 43);
-            this.BtnAgregarimagen.TabIndex = 8;
+            this.BtnAgregarimagen.TabIndex = 6;
             this.BtnAgregarimagen.UseVisualStyleBackColor = true;
             this.BtnAgregarimagen.Click += new System.EventHandler(this.BtnAgregarimagen_Click);
             // 
@@ -292,13 +293,25 @@
             this.LblValidacionAgregar.Size = new System.Drawing.Size(0, 29);
             this.LblValidacionAgregar.TabIndex = 26;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(51, 399);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(172, 20);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Reestablecer campos";
+            // 
             // frmNuevoArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
+            this.BackColor = System.Drawing.Color.RoyalBlue;
             this.ClientSize = new System.Drawing.Size(1351, 674);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.LblValidacionAgregar);
             this.Controls.Add(this.pbxPrecio);
             this.Controls.Add(this.pbxNombre);
@@ -361,5 +374,6 @@
         private System.Windows.Forms.PictureBox pbxNombre;
         private System.Windows.Forms.PictureBox pbxPrecio;
         private System.Windows.Forms.Label LblValidacionAgregar;
+        private System.Windows.Forms.Label label1;
     }
 }

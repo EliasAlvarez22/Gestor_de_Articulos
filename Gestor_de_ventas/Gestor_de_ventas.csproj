@@ -15,7 +15,6 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -60,22 +59,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrmAltaCategoria.cs">
+    <Compile Include="views_categorias\FrmAltaCategoria.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmAltaCategoria.Designer.cs">
+    <Compile Include="views_categorias\FrmAltaCategoria.Designer.cs">
       <DependentUpon>FrmAltaCategoria.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmArticulos.cs">
+    <Compile Include="views_Articulos\frmArticulos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmArticulos.Designer.cs">
+    <Compile Include="views_Articulos\frmArticulos.Designer.cs">
       <DependentUpon>frmArticulos.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmCategorias.cs">
+    <Compile Include="views_categorias\FrmCategorias.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmCategorias.Designer.cs">
+    <Compile Include="views_categorias\FrmCategorias.Designer.cs">
       <DependentUpon>FrmCategorias.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmInicio.cs">
@@ -84,16 +83,22 @@
     <Compile Include="FrmInicio.Designer.cs">
       <DependentUpon>FrmInicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmMarcas.cs">
+    <Compile Include="views_Marcas\FrmAltaMarca.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMarcas.Designer.cs">
+    <Compile Include="views_Marcas\FrmAltaMarca.Designer.cs">
+      <DependentUpon>FrmAltaMarca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views_Marcas\FrmMarcas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views_Marcas\FrmMarcas.Designer.cs">
       <DependentUpon>FrmMarcas.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmNuevoArticulo.cs">
+    <Compile Include="views_Articulos\frmNuevoArticulo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmNuevoArticulo.Designer.cs">
+    <Compile Include="views_Articulos\frmNuevoArticulo.Designer.cs">
       <DependentUpon>frmNuevoArticulo.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmPrincipal.cs">
@@ -104,22 +109,25 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FrmAltaCategoria.resx">
+    <EmbeddedResource Include="views_categorias\FrmAltaCategoria.resx">
       <DependentUpon>FrmAltaCategoria.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmArticulos.resx">
+    <EmbeddedResource Include="views_Articulos\frmArticulos.resx">
       <DependentUpon>frmArticulos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmCategorias.resx">
+    <EmbeddedResource Include="views_categorias\FrmCategorias.resx">
       <DependentUpon>FrmCategorias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmInicio.resx">
       <DependentUpon>FrmInicio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmMarcas.resx">
+    <EmbeddedResource Include="views_Marcas\FrmAltaMarca.resx">
+      <DependentUpon>FrmAltaMarca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views_Marcas\FrmMarcas.resx">
       <DependentUpon>FrmMarcas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmNuevoArticulo.resx">
+    <EmbeddedResource Include="views_Articulos\frmNuevoArticulo.resx">
       <DependentUpon>frmNuevoArticulo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPrincipal.resx">

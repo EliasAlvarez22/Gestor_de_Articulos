@@ -10,7 +10,7 @@ namespace Negocio
 {
     public class MarcaNegocio
     {
-
+        private AccesoDatos datos { get; } = new AccesoDatos();
         public List<Marca> ListarMarcas()
         {
             List<Marca> Lista = new List<Marca>();
@@ -40,6 +40,26 @@ namespace Negocio
                 throw ex;
             }
         }
+        //Cuenta la marca en uso, si tiene usos no se va a poder eliminar porque tiene las referencias de los articulos
+        public int ContarMarcaEnUso(int id)
+        {
+            AccesoDatos datos = new();
+            try
+            {
+                string query = "select count(*) from ARTICULOS art, MARCAS mar where IdMarca =  @id and mar.Id = IdMarca ";
+                datos.SetearQuery(query);
+                datos.setearParametros("@id", id);
+                datos.Abrirconexion();
+                int totalMarcas = (int)datos.Comando.ExecuteScalar();
+                return totalMarcas;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
+        }
         public int ContarMarcas()
         {
             AccesoDatos datos = new AccesoDatos();
@@ -56,6 +76,65 @@ namespace Negocio
             {
 
                 throw ex;
+            }
+        }
+
+        public void AgregarMarca(Marca marca)
+        {
+            try
+            {
+                string query = "INSERT INTO MARCAS (Descripcion) values (@descripcion)";
+                datos.SetearQuery(query);
+                datos.setearParametros("@descripcion", marca.Descripcion);
+                datos.EjecutarNonQuery();
+            }
+            catch (Exception ex)
+            { 
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void ModificarMarca(Marca marca)
+        {
+            try
+            {
+                string query = "UPDATE MARCAS SET Descripcion = @descripcion where Id = @id";
+                datos.SetearQuery(query);
+                datos.setearParametros("@descripcion", marca.Descripcion);
+                datos.setearParametros("@id", marca.Id);
+                datos.EjecutarNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void EliminarMarca (int id)
+        {
+            try
+            {
+                string query = "DELETE FROM MARCAS where Id = @id";
+                datos.SetearQuery(query);
+                datos.setearParametros("id", id);
+                datos.EjecutarNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
     }
