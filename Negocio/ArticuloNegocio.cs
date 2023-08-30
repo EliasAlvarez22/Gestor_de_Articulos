@@ -9,10 +9,6 @@ using System.Globalization;
 using System.Security.AccessControl;
 using System.Xml.Schema;
 
-
-//HAY Que ver si: Se hace obligatorio la marca y categoria.. O se modifica la consulta relacionada, 
-//para que traiga tambien vacios en el caso que no tengan.. Podria ser eso..
-
 namespace Negocio
 {
     public class ArticuloNegocio
@@ -83,16 +79,24 @@ namespace Negocio
         public void Agregar(Articulo Nuevo)
         {
             AccesoDatos datos = new ();
+            CategoriaNegocio negocioCategoria = new ();
+            MarcaNegocio negocioMarca = new();
             try
             {
+
                 datos.SetearQuery("insert into ARTICULOS(Codigo,Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio) values" +
                     "( @codigoArticulo,@nombre,@descripcion,@IdMarca,@IdCategoria,@Url,@precio)");
                 datos.setearParametros("@codigoArticulo", Nuevo.CodigoArticulo);
                 datos.setearParametros("@nombre", Nuevo.Nombre);
                 datos.setearParametros("@descripcion", Nuevo.Descripcion);
+
                 //Si es null Marca o Categoria se coloca sin Marca o Categoria.
-                datos.setearParametros("@IdMarca", Nuevo.Marca == null ? 9 : Nuevo.Marca.Id);
-                datos.setearParametros("@IdCategoria", Nuevo.Categoria == null ? 5 : Nuevo.Categoria.Id);
+                int idDefaultMarca = negocioMarca.BuscarIdDefault();
+                datos.setearParametros("@IdMarca", Nuevo.Marca == null ? idDefaultMarca : Nuevo.Marca.Id);
+
+                int idDefaultCategoria = negocioCategoria.BuscarIdDefault();
+                datos.setearParametros("@IdCategoria", Nuevo.Categoria == null ? idDefaultCategoria : Nuevo.Categoria.Id);
+
                 datos.setearParametros("@url", Nuevo.ImagenUrl);
                 datos.setearParametros("@precio", Nuevo.Precio);
                 datos.EjecutarNonQuery();

@@ -17,12 +17,7 @@ namespace Gestor_de_ventas.views_Marcas
             try
             {
                 InitializeComponent();
-                ArticuloNegocio negocio = new ArticuloNegocio();
                 this.marca = marca;
-                txtDescripcion.Text = marca.Descripcion;
-                LblTitulo.Text = "Modificar Marca";
-                Text = "Modificar Marca";
-                btnAgregar.Text = "Modificar";
             }
             catch (Exception ex)
             {
@@ -67,7 +62,29 @@ namespace Gestor_de_ventas.views_Marcas
 
         private void FrmAltaMarca_Load(object sender, EventArgs e)
         {
+            MarcaNegocio negocioMarca = new MarcaNegocio();
+            try
+            {
+                //Significa que ya es una marca creada
+                if(marca != null)
+                {
+                    lblMarcasUsadas.Text = "Marca usada en             articulos";
+                    txtDescripcion.Text = marca.Descripcion;
+                    LblTitulo.Text = "Modificar Marca";
+                    Text = "Modificar Marca";
+                    btnAgregar.Text = "Modificar";
+                    lblContarMarcas.Text = negocioMarca.ContarMarcaEnUso(marca.Id).ToString();
+                }
+                else
+                {
+                    lblMarcasUsadas.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
 
+                 MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

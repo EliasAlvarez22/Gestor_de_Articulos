@@ -34,7 +34,7 @@
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.LblTitulo = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblMarcasUsadas = new System.Windows.Forms.Label();
             this.lblContarMarcas = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -53,7 +53,7 @@
             this.lblDescripcion.AutoSize = true;
             this.lblDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDescripcion.ForeColor = System.Drawing.Color.White;
-            this.lblDescripcion.Location = new System.Drawing.Point(60, 223);
+            this.lblDescripcion.Location = new System.Drawing.Point(50, 221);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(114, 25);
             this.lblDescripcion.TabIndex = 17;
@@ -87,16 +87,16 @@
             this.LblTitulo.TabIndex = 14;
             this.LblTitulo.Text = "Nueva Marca";
             // 
-            // label1
+            // lblMarcasUsadas
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(50, 146);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(290, 25);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Marca usada en             articulos";
+            this.lblMarcasUsadas.AutoSize = true;
+            this.lblMarcasUsadas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMarcasUsadas.ForeColor = System.Drawing.Color.White;
+            this.lblMarcasUsadas.Location = new System.Drawing.Point(50, 146);
+            this.lblMarcasUsadas.Name = "lblMarcasUsadas";
+            this.lblMarcasUsadas.Size = new System.Drawing.Size(290, 25);
+            this.lblMarcasUsadas.TabIndex = 19;
+            this.lblMarcasUsadas.Text = "Marca usada en             articulos";
             // 
             // lblContarMarcas
             // 
@@ -115,7 +115,7 @@
             this.BackColor = System.Drawing.Color.SkyBlue;
             this.ClientSize = new System.Drawing.Size(677, 479);
             this.Controls.Add(this.lblContarMarcas);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblMarcasUsadas);
             this.Controls.Add(this.lblValidacion);
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.txtDescripcion);
@@ -123,6 +123,7 @@
             this.Controls.Add(this.LblTitulo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmAltaMarca";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nueva Marca";
             this.Load += new System.EventHandler(this.FrmAltaMarca_Load);
             this.ResumeLayout(false);
@@ -136,7 +137,7 @@
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Label LblTitulo;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblMarcasUsadas;
         private System.Windows.Forms.Label lblContarMarcas;
     }
 }

@@ -58,11 +58,27 @@ namespace Gestor_de_ventas
                 if (DgvMarcas.Rows.Count < 0)
                     return;
                 Marca seleccionado = (Marca)DgvMarcas.CurrentRow.DataBoundItem;
-                MarcaNegocio negocio = new();
+                MarcaNegocio negocioMarca = new MarcaNegocio();
+                
+                //La Marca Default no se puede eliminar
+                int idAux = negocioMarca.BuscarIdDefault();
+                if (seleccionado.Id == idAux)
+                {
+                    MessageBox.Show("Esta marca no puede eliminarse, es la Marca Default", "Marca Default", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+                int marcaUsada = negocioMarca.ContarMarcaEnUso(seleccionado.Id);
+                //si se usa la marca, no se puede eliminar. Sino si.
+                if ( marcaUsada > 0 )
+                {
+                    MessageBox.Show("Esta marca no puede eliminarse, está en uso", "Mensaje en uso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 DialogResult resultado = MessageBox.Show("Seguro que desea eliminar?", "Eliminar Marca", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (resultado == DialogResult.Yes)
                 {
-                    negocio.EliminarMarca(seleccionado.Id);
+                    negocioMarca.EliminarMarca(seleccionado.Id);
                     Refrescar();
                 }
             }
@@ -75,7 +91,18 @@ namespace Gestor_de_ventas
 
         private void FrmMarcas_Load(object sender, EventArgs e)
         {
-            Refrescar();
+            MarcaNegocio negocioMarca = new();
+            try
+            {
+                negocioMarca.CrearIdDefault();
+                Refrescar();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+            
         }
     }
 }

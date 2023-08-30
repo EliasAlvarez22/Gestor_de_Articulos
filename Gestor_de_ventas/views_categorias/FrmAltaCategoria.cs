@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Dominio;
@@ -22,10 +23,7 @@ namespace Gestor_de_ventas
         public FrmAltaCategoria(Categoria categoria)           
         {
             InitializeComponent();
-            this.categoria = categoria;
-            LblTituloCategoria.Text = "Modificar categoría";
-            BtnAgregar.Text = "Modificar";
-            Text = "Modificar Marca";
+            this.categoria = categoria;            
         }
 
         private void BtnAgregar_Click(object sender, EventArgs e)
@@ -69,11 +67,27 @@ namespace Gestor_de_ventas
 
         private void FrmAltaCategoria_Load(object sender, EventArgs e)
         {
-
-            if (categoria != null)
+            CategoriaNegocio negocioCategoria = new();
+            try
             {
-                txtDescripcion.Text = categoria.Descripcion;
+                if (categoria != null)
+                {
+                    Text = "Modificar Categoría";
+                    txtDescripcion.Text = categoria.Descripcion;
+                    LblTituloCategoria.Text = "Modificar Categoria";
+                    BtnAgregar.Text = "Modificar";
+                    lblCategoriasUsadas.Text = "Categoría usada en             articulos";
+                    lblContarCategorias.Text = negocioCategoria.ContarCategoriaEnUso(categoria.Id).ToString();
+                }
+                else                
+                    lblCategoriasUsadas.Text = "";               
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+            
         }
     }
 }

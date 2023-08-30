@@ -1,6 +1,7 @@
 ﻿using Dominio;
 using Negocio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,8 +23,18 @@ namespace Gestor_de_ventas
 
         private void FrmCategorias_Load(object sender, EventArgs e)
         {
+            CategoriaNegocio negocioCategoria = new();
+            try
+            {
+                negocioCategoria.CrearIdDefaultCategoria();
+                Refrescar();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
             
-            Refrescar();
         }
         private void OcultarColumnas()
         {
@@ -92,10 +103,25 @@ namespace Gestor_de_ventas
             
             try
             {
+                seleccionado = (Categoria)DgvCategorias.CurrentRow.DataBoundItem;
+                //La categoría Default no se puede eliminar
+                int idAux = negocio.BuscarIdDefault();
+                if (seleccionado.Id == idAux)
+                {
+                    MessageBox.Show("Esta categoría no puede eliminarse, es la Categoría Default", "Categoría Default", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+
+                //si se usa la marca, no se puede eliminar. Sino si.
+                int CategoriaUsada = negocio.ContarCategoriaEnUso(seleccionado.Id);
+                if (CategoriaUsada > 0)
+                {
+                    MessageBox.Show("Esta categoría no puede eliminarse, categoría en uso", "Categoría en uso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 DialogResult resultado = MessageBox.Show("Seguro que desea eliminar?", "Eliminar categoria", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (resultado == DialogResult.Yes)
                 {
-                    seleccionado = (Categoria)DgvCategorias.CurrentRow.DataBoundItem;
                     negocio.EliminarCategoria(seleccionado.Id);
                     Refrescar();
                 }

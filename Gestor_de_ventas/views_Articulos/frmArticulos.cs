@@ -30,15 +30,20 @@ namespace Gestor_de_ventas
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
-                if (DgvArticulos.Rows.Count < 0)
-                    return;
-
+               
                 
+
                 //Grid de articulos
                 ListaArticulos = negocio.ListarArticulos();
                 DgvArticulos.DataSource = ListaArticulos;
                 OcultarColumnas();
-                DgvArticulos.CurrentCell = DgvArticulos.Rows[0].Cells[1];
+
+                if (DgvArticulos.Rows.Count > 0)
+                {
+                    DgvArticulos.Rows[0].Selected = true;
+                    DgvArticulos.CurrentCell = DgvArticulos.Rows[0].Cells[1];
+                }
+                
 
                 //Campos
                 CboCampo.Items.Clear();
@@ -50,7 +55,6 @@ namespace Gestor_de_ventas
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString());
             }
         }
@@ -79,6 +83,7 @@ namespace Gestor_de_ventas
                 seleccionado = (Articulo)DgvArticulos.CurrentRow.DataBoundItem;
                 frmNuevoArticulo Modificar = new frmNuevoArticulo(seleccionado);
                 Modificar.ShowDialog();
+                RefrescarGrid();
             }
             catch (Exception ex)
             {
@@ -87,15 +92,18 @@ namespace Gestor_de_ventas
             }
         }
 
-        private void BtnRefrescar_Click(object sender, EventArgs e)
+        private void RefrescarGrid()
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
-
             ListaArticulos = negocio.ListarArticulos();
-
             DgvArticulos.DataSource = ListaArticulos;
-
             OcultarColumnas();
+        }
+        
+
+        private void BtnRefrescar_Click(object sender, EventArgs e)
+        {
+            RefrescarGrid();
         }
         //Exportar PDF con iTextSharp, se oculta la url de Imagen en la exportacion
         private void BtnExportarPDF_Click(object sender, EventArgs e)
@@ -171,19 +179,25 @@ namespace Gestor_de_ventas
 
             //Valida si no tiene articulos, que no haga nada.
             if (DgvArticulos.RowCount == 0)                          
-                return;           
-            Articulo seleccionado = DgvArticulos.CurrentRow.DataBoundItem as Articulo;
-            DialogResult resultado = MessageBox.Show("Seguro que desea eliminar?", "Eliminar artículo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (resultado == DialogResult.Yes)
+                return;
+            try
             {
-                negocio.EliminarArticulo(seleccionado.Id);
-                MessageBox.Show("Artículo eliminado correctamente");
+                Articulo seleccionado = (Articulo)DgvArticulos.CurrentRow.DataBoundItem;
+                DialogResult resultado = MessageBox.Show("Seguro que desea eliminar?", "Eliminar artículo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (resultado == DialogResult.Yes)
+                {
+                    negocio.EliminarArticulo(seleccionado.Id);
+                    MessageBox.Show("Artículo eliminado correctamente");
 
-                ListaArticulos = negocio.ListarArticulos();
-                DgvArticulos.DataSource = null;
-                DgvArticulos.DataSource = ListaArticulos;
-                OcultarColumnas();
+                    RefrescarGrid();
+                }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString(),"Error",MessageBoxButtons.OK, MessageBoxIcon.Error) ;
+            }
+            
         }
         private void CboCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -238,6 +252,7 @@ namespace Gestor_de_ventas
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
+                
                 // Validaciones
                 string[] CamposAvalidar = {"Precio","Código" };                
                 if (CboCampo.Text == "" && CboCriterio.Text == "")
@@ -260,6 +275,13 @@ namespace Gestor_de_ventas
                 {
                     LblValidacionFiltro.Text = "";
                 }
+
+                if (DgvArticulos.Rows.Count == 0)
+                {
+                    return;
+                }
+
+
                 //Logica
                 List<Articulo> listaFiltrada;
                 DgvArticulos.DataSource = null;
