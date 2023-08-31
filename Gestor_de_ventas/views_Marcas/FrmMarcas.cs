@@ -62,6 +62,8 @@ namespace Gestor_de_ventas
                 
                 //La Marca Default no se puede eliminar
                 int idAux = negocioMarca.BuscarIdDefault();
+
+                int idArticuloSeleccionado = seleccionado.Id;
                 if (seleccionado.Id == idAux)
                 {
                     MessageBox.Show("Esta marca no puede eliminarse, es la Marca Default", "Marca Default", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -69,13 +71,24 @@ namespace Gestor_de_ventas
                 }
                 int marcaUsada = negocioMarca.ContarMarcaEnUso(seleccionado.Id);
                 //si se usa la marca, no se puede eliminar. Sino si.
+                
                 if ( marcaUsada > 0 )
                 {
-                    MessageBox.Show("Esta marca no puede eliminarse, está en uso", "Mensaje en uso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    DialogResult confirmarEliminacion = MessageBox.Show($"Esta marca se está usando {marcaUsada}.Se reemplazará por la Marca Default ¿Seguro que desea continuar?", "Marca en uso", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                    if(confirmarEliminacion == DialogResult.Yes)
+                    {
+                        DialogResult EliminacionConfirmada = MessageBox.Show("¿Seguro que desea eliminar?", "Eliminar Marca", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (EliminacionConfirmada == DialogResult.Yes)
+                        {
+                            negocioMarca.AsignarMarcaDefault(idArticuloSeleccionado);
+                            negocioMarca.EliminarMarca(idArticuloSeleccionado);
+                            Refrescar();
+                            return;
+                        }
+                    }
                 }
 
-                DialogResult resultado = MessageBox.Show("Seguro que desea eliminar?", "Eliminar Marca", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult resultado = MessageBox.Show("¿Seguro que desea eliminar?", "Eliminar Marca", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (resultado == DialogResult.Yes)
                 {
                     negocioMarca.EliminarMarca(seleccionado.Id);

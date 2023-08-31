@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio;
@@ -40,6 +41,7 @@ namespace Negocio
 
                 throw ex;
             }
+            finally { datos.cerrarConexion(); }
         }
         // Crea el Id y descripcion de "Sin Marca" si es que no hay ninguno con ese nombre
         public void CrearIdDefault()
@@ -60,13 +62,29 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
             {
                 datos.cerrarConexion();
+            }            
+        }
+        public void AsignarMarcaDefault(int id)
+        {
+            MarcaNegocio negocio = new();
+            try
+            {
+                int idDefault = negocio.BuscarIdDefault();
+                string query = "UPDATE ARTICULOS set IdMarca = @idDefault where Id = @id";
+                datos.SetearQuery(query);
+                datos.setearParametros("idDefault", idDefault);
+                datos.setearParametros("id", id);
+                datos.EjecutarNonQuery();
             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }finally { datos.cerrarConexion();}
             
         }
         public int BuscarIdDefault()
@@ -82,7 +100,6 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -108,7 +125,10 @@ namespace Negocio
 
                 throw ex;
             }
-            
+            finally
+            {
+                datos.cerrarConexion();
+            }            
         }
         public int ContarMarcas()
         {
@@ -127,6 +147,7 @@ namespace Negocio
 
                 throw ex;
             }
+            finally { datos.cerrarConexion();}
         }
 
         public void AgregarMarca(Marca marca)

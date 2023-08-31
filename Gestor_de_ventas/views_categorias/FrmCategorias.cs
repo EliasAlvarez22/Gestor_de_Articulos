@@ -20,7 +20,6 @@ namespace Gestor_de_ventas
         {
             InitializeComponent();
         }
-
         private void FrmCategorias_Load(object sender, EventArgs e)
         {
             CategoriaNegocio negocioCategoria = new();
@@ -31,10 +30,8 @@ namespace Gestor_de_ventas
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString());
-            }
-            
+            }            
         }
         private void OcultarColumnas()
         {
@@ -51,7 +48,6 @@ namespace Gestor_de_ventas
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -66,12 +62,10 @@ namespace Gestor_de_ventas
                 DgvCategorias.CurrentCell = DgvCategorias.Rows[0].Cells[1];
             }
         }
-
         private void BtnRefrescar_Click(object sender, EventArgs e)
         {
             Refrescar();
         }
-
         private void btnModificar_Click(object sender, EventArgs e)
         {
             //Valida si no tiene Categorias, que no haga nada.
@@ -84,15 +78,12 @@ namespace Gestor_de_ventas
                 FrmAltaCategoria Modificar = new FrmAltaCategoria(seleccionado);
                 Modificar.ShowDialog();
                 Refrescar();
-
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString());
             }
         }
-
         private void BtnEliminarCategoria_Click(object sender, EventArgs e)
         {
             //Valida si no tiene Categorias, que no haga nada.
@@ -111,7 +102,6 @@ namespace Gestor_de_ventas
                     MessageBox.Show("Esta categoría no puede eliminarse, es la Categoría Default", "Categoría Default", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     return;
                 }
-
                 //si se usa la marca, no se puede eliminar. Sino si.
                 int CategoriaUsada = negocio.ContarCategoriaEnUso(seleccionado.Id);
                 if (CategoriaUsada > 0)

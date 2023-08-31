@@ -29,10 +29,7 @@ namespace Gestor_de_ventas
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
-            {
-               
-                
-
+            {       
                 //Grid de articulos
                 ListaArticulos = negocio.ListarArticulos();
                 DgvArticulos.DataSource = ListaArticulos;
@@ -43,15 +40,12 @@ namespace Gestor_de_ventas
                     DgvArticulos.Rows[0].Selected = true;
                     DgvArticulos.CurrentCell = DgvArticulos.Rows[0].Cells[1];
                 }
-                
-
                 //Campos
                 CboCampo.Items.Clear();
                 CboCampo.Items.Add("Precio");
                 CboCampo.Items.Add("Código");
                 CboCampo.Items.Add("Marcas");
                 CboCampo.Items.Add("Categorías");
-
             }
             catch (Exception ex)
             {
