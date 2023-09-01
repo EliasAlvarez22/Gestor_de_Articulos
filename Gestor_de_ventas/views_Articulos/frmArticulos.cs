@@ -265,17 +265,10 @@ namespace Gestor_de_ventas
                     LblValidacionFiltro.Text = "Debe tener un filtro esta búsqueda";
                     return;
                 }
-                else
-                {
-                    LblValidacionFiltro.Text = "";
-                }
-
-                if (DgvArticulos.Rows.Count == 0)
-                {
-                    return;
-                }
-
-
+                else                
+                    LblValidacionFiltro.Text = "";                
+                if (DgvArticulos.Rows.Count == 0)                
+                    return;                
                 //Logica
                 List<Articulo> listaFiltrada;
                 DgvArticulos.DataSource = null;
