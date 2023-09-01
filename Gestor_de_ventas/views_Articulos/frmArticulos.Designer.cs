@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmArticulos));
             this.DgvArticulos = new System.Windows.Forms.DataGridView();
             this.lblTitulo = new System.Windows.Forms.Label();
@@ -41,9 +41,10 @@
             this.TxtFiltro = new System.Windows.Forms.TextBox();
             this.LblCampo = new System.Windows.Forms.Label();
             this.LblCriterio = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblFiltro = new System.Windows.Forms.Label();
             this.BtnFiltrar = new System.Windows.Forms.Button();
             this.LblValidacionFiltro = new System.Windows.Forms.Label();
+            this.btnExportarExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgvArticulos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,14 +57,14 @@
             this.DgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvArticulos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.DgvArticulos.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
-            this.DgvArticulos.Location = new System.Drawing.Point(45, 91);
+            this.DgvArticulos.Location = new System.Drawing.Point(45, 106);
             this.DgvArticulos.MultiSelect = false;
             this.DgvArticulos.Name = "DgvArticulos";
             this.DgvArticulos.RowHeadersVisible = false;
             this.DgvArticulos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 0, 5, 5);
-            this.DgvArticulos.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(0, 0, 5, 5);
+            this.DgvArticulos.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.DgvArticulos.RowTemplate.Height = 40;
             this.DgvArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvArticulos.Size = new System.Drawing.Size(1325, 218);
@@ -88,7 +89,7 @@
             this.BtnEditarArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnEditarArticulo.Image = ((System.Drawing.Image)(resources.GetObject("BtnEditarArticulo.Image")));
             this.BtnEditarArticulo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnEditarArticulo.Location = new System.Drawing.Point(88, 354);
+            this.BtnEditarArticulo.Location = new System.Drawing.Point(82, 345);
             this.BtnEditarArticulo.Name = "BtnEditarArticulo";
             this.BtnEditarArticulo.Size = new System.Drawing.Size(152, 54);
             this.BtnEditarArticulo.TabIndex = 0;
@@ -103,9 +104,9 @@
             this.BtnRefrescar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BtnRefrescar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnRefrescar.Image = ((System.Drawing.Image)(resources.GetObject("BtnRefrescar.Image")));
-            this.BtnRefrescar.Location = new System.Drawing.Point(1198, 354);
+            this.BtnRefrescar.Location = new System.Drawing.Point(1208, 30);
             this.BtnRefrescar.Name = "BtnRefrescar";
-            this.BtnRefrescar.Size = new System.Drawing.Size(138, 54);
+            this.BtnRefrescar.Size = new System.Drawing.Size(135, 54);
             this.BtnRefrescar.TabIndex = 3;
             this.BtnRefrescar.Text = "Refrescar";
             this.BtnRefrescar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -117,7 +118,7 @@
             this.BtnEliminarArticulo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BtnEliminarArticulo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnEliminarArticulo.Image = ((System.Drawing.Image)(resources.GetObject("BtnEliminarArticulo.Image")));
-            this.BtnEliminarArticulo.Location = new System.Drawing.Point(348, 354);
+            this.BtnEliminarArticulo.Location = new System.Drawing.Point(255, 345);
             this.BtnEliminarArticulo.Name = "BtnEliminarArticulo";
             this.BtnEliminarArticulo.Size = new System.Drawing.Size(152, 54);
             this.BtnEliminarArticulo.TabIndex = 1;
@@ -131,7 +132,7 @@
             this.BtnExportarPDF.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BtnExportarPDF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnExportarPDF.Image = ((System.Drawing.Image)(resources.GetObject("BtnExportarPDF.Image")));
-            this.BtnExportarPDF.Location = new System.Drawing.Point(975, 354);
+            this.BtnExportarPDF.Location = new System.Drawing.Point(1179, 345);
             this.BtnExportarPDF.Name = "BtnExportarPDF";
             this.BtnExportarPDF.Size = new System.Drawing.Size(152, 54);
             this.BtnExportarPDF.TabIndex = 2;
@@ -189,16 +190,16 @@
             this.LblCriterio.TabIndex = 8;
             this.LblCriterio.Text = "Criterio";
             // 
-            // label3
+            // lblFiltro
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(589, 455);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 22);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Filtro";
+            this.lblFiltro.AutoSize = true;
+            this.lblFiltro.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFiltro.ForeColor = System.Drawing.Color.White;
+            this.lblFiltro.Location = new System.Drawing.Point(589, 455);
+            this.lblFiltro.Name = "lblFiltro";
+            this.lblFiltro.Size = new System.Drawing.Size(50, 22);
+            this.lblFiltro.TabIndex = 9;
+            this.lblFiltro.Text = "Filtro";
             // 
             // BtnFiltrar
             // 
@@ -220,15 +221,30 @@
             this.LblValidacionFiltro.Size = new System.Drawing.Size(0, 22);
             this.LblValidacionFiltro.TabIndex = 11;
             // 
+            // btnExportarExcel
+            // 
+            this.btnExportarExcel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnExportarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExportarExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExportarExcel.Image")));
+            this.btnExportarExcel.Location = new System.Drawing.Point(1006, 345);
+            this.btnExportarExcel.Name = "btnExportarExcel";
+            this.btnExportarExcel.Size = new System.Drawing.Size(152, 54);
+            this.btnExportarExcel.TabIndex = 12;
+            this.btnExportarExcel.Text = "Exportar Excel";
+            this.btnExportarExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnExportarExcel.UseVisualStyleBackColor = true;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
+            // 
             // frmArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RoyalBlue;
             this.ClientSize = new System.Drawing.Size(1394, 699);
+            this.Controls.Add(this.btnExportarExcel);
             this.Controls.Add(this.LblValidacionFiltro);
             this.Controls.Add(this.BtnFiltrar);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblFiltro);
             this.Controls.Add(this.LblCriterio);
             this.Controls.Add(this.LblCampo);
             this.Controls.Add(this.TxtFiltro);
@@ -263,8 +279,9 @@
         private System.Windows.Forms.TextBox TxtFiltro;
         private System.Windows.Forms.Label LblCampo;
         private System.Windows.Forms.Label LblCriterio;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblFiltro;
         private System.Windows.Forms.Button BtnFiltrar;
         private System.Windows.Forms.Label LblValidacionFiltro;
+        private System.Windows.Forms.Button btnExportarExcel;
     }
 }

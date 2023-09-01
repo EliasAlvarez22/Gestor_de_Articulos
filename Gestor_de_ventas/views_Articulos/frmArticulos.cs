@@ -13,7 +13,7 @@ using System.Xml.Linq;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
-using PdfSharp.Pdf.Filters;
+using OfficeOpenXml;
 
 namespace Gestor_de_ventas
 {
@@ -297,6 +297,40 @@ namespace Gestor_de_ventas
         private void CboCriterio_SelectedIndexChanged(object sender, EventArgs e)
         {
             LblValidacionFiltro.Text = "";
+        }
+
+        private void ExportarExcel(DataGridView dataGridView)
+        {
+            ExcelPackage excelPackage = new ExcelPackage();
+            ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("Lista de artículos");
+
+            for (int filas = 1; filas <= dataGridView.Columns.Count; filas++)
+            {
+                worksheet.Cells[1, filas].Value = dataGridView.Columns[filas - 1].HeaderText;
+            }
+
+            for (int fila = 0; fila < dataGridView.Rows.Count; fila++)
+            {
+                for (int columna = 0; columna < dataGridView.Columns.Count; columna++)
+                {
+                    worksheet.Cells[fila + 2, columna + 1].Value = dataGridView.Rows[fila].Cells[columna].Value;
+                }
+            }
+
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.Filter = "Archivo de Excel (*.xlsx)|*.xlsx";
+            saveDialog.FileName = "Lista de Artículos.xlsx";
+
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                FileInfo archivoExcel = new FileInfo(saveDialog.FileName);
+                excelPackage.SaveAs(archivoExcel);
+            }
+        }
+
+        private void btnExportarExcel_Click(object sender, EventArgs e)
+        {
+            ExportarExcel(DgvArticulos);
         }
     }
 }

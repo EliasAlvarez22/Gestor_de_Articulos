@@ -88,13 +88,11 @@ namespace Gestor_de_ventas
         {
             //Valida si no tiene Categorias, que no haga nada.
             if (DgvCategorias.RowCount == 0)
-                return;
-            Categoria seleccionado;
-            CategoriaNegocio negocio = new();
-            
+                return;            
+            CategoriaNegocio negocio = new();            
             try
             {
-                seleccionado = (Categoria)DgvCategorias.CurrentRow.DataBoundItem;
+                Categoria seleccionado = (Categoria)DgvCategorias.CurrentRow.DataBoundItem;
                 //La categoría Default no se puede eliminar
                 int idAux = negocio.BuscarIdDefault();
                 if (seleccionado.Id == idAux)
@@ -104,16 +102,30 @@ namespace Gestor_de_ventas
                 }
                 //si se usa la marca, no se puede eliminar. Sino si.
                 int CategoriaUsada = negocio.ContarCategoriaEnUso(seleccionado.Id);
+
                 if (CategoriaUsada > 0)
                 {
-                    MessageBox.Show("Esta categoría no puede eliminarse, categoría en uso", "Categoría en uso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    DialogResult confirmarEliminacion = MessageBox.Show($"Esta categoría se está usando {CategoriaUsada} vez/veces .Se reemplazará por la Categoria Default ¿Seguro que desea continuar?", "Categoría en uso", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                    if (confirmarEliminacion == DialogResult.Yes)
+                    {
+                        DialogResult EliminacionConfirmada = MessageBox.Show("¿Seguro que desea eliminar?", "Eliminar Marca", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (EliminacionConfirmada == DialogResult.Yes)
+                        {
+                            negocio.AsignarCategoriaDefault(seleccionado.Id);
+                            negocio.EliminarCategoria(seleccionado.Id);
+                            Refrescar();
+                            return;
+                        }
+                    }
                 }
-                DialogResult resultado = MessageBox.Show("Seguro que desea eliminar?", "Eliminar categoria", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (resultado == DialogResult.Yes)
+                else
                 {
-                    negocio.EliminarCategoria(seleccionado.Id);
-                    Refrescar();
+                    DialogResult resultado = MessageBox.Show("Seguro que desea eliminar?", "Eliminar categoria", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (resultado == DialogResult.Yes)
+                    {
+                        negocio.EliminarCategoria(seleccionado.Id);
+                        Refrescar();
+                    }
                 }
             }
             catch (Exception ex)

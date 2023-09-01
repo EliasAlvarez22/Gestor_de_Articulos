@@ -69,17 +69,17 @@ namespace Negocio
                 datos.cerrarConexion();
             }            
         }
-        public void AsignarMarcaDefault(int id)
+        public void AsignarMarcaDefault(int idMarca)
         {
             MarcaNegocio negocio = new();
             try
             {
                 int idDefault = negocio.BuscarIdDefault();
-                string query = "UPDATE ARTICULOS set IdMarca = @idDefault where Id = @id";
+                string query = "UPDATE ARTICULOS set IdMarca = @idDefault where IdMarca = @idMarcaCambiar";
                 datos.SetearQuery(query);
                 datos.setearParametros("idDefault", idDefault);
-                datos.setearParametros("id", id);
-                datos.EjecutarNonQuery();
+                datos.setearParametros("idMarcaCambiar", idMarca);
+                datos.EjecutarNonQuery(); 
             }
             catch (Exception ex)
             {
@@ -113,9 +113,9 @@ namespace Negocio
             AccesoDatos datos = new();
             try
             {
-                string query = "select count(*) from ARTICULOS art, MARCAS mar where IdMarca =  @id and mar.Id = IdMarca ";
+                string query = "select count(*) from ARTICULOS art, MARCAS mar where IdMarca =  @idParam and mar.Id = IdMarca ";
                 datos.SetearQuery(query);
-                datos.setearParametros("@id", id);
+                datos.setearParametros("@idParam", id);
                 datos.Abrirconexion();
                 int totalMarcas = (int)datos.Comando.ExecuteScalar();
                 return totalMarcas;
@@ -193,9 +193,9 @@ namespace Negocio
         {
             try
             {
-                string query = "DELETE FROM MARCAS where Id = @id";
+                string query = "DELETE FROM MARCAS where Id = @idMarca";
                 datos.SetearQuery(query);
-                datos.setearParametros("id", id);
+                datos.setearParametros("idMarca", id);
                 datos.EjecutarNonQuery();
             }
             catch (Exception ex)

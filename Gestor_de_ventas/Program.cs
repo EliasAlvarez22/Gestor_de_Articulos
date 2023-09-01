@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,6 +15,9 @@ namespace Gestor_de_ventas
         [STAThread]
         static void Main()
         {
+            //Licencia para usar la libreria de EXCEL
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial; 
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FrmPrincipal());

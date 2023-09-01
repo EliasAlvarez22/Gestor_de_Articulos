@@ -34,13 +34,31 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
             {
                 datos.cerrarConexion();
             }
+        }
+        public void AsignarCategoriaDefault(int idCategoria)
+        {
+            CategoriaNegocio negocio = new();
+            AccesoDatos datos = new();
+            try
+            {
+                int idDefault = negocio.BuscarIdDefault();
+                string query = "UPDATE ARTICULOS set IdCategoria = @idDefault where IdCategoria= @idCategoriaCambiar";
+                datos.SetearQuery(query);
+                datos.setearParametros("idDefault", idDefault);
+                datos.setearParametros("idCategoriaCambiar", idCategoria);
+                datos.EjecutarNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
 
         }
         public int BuscarIdDefault()
@@ -86,7 +104,7 @@ namespace Negocio
             catch (Exception ex)
             {
                 throw ex;
-            }
+            }finally { Datos.cerrarConexion();}
         }
         public void AgregarCategoria(Categoria categoria)
         {
@@ -157,7 +175,11 @@ namespace Negocio
             {
 
                 throw ex;
-            }            
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }           
         }
     }
 }
