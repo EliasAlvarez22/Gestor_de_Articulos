@@ -29,13 +29,18 @@ namespace Gestor_de_ventas
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
 
-            //Validaciones
-
-            if(txtDescripcion.Text == "")
+            //Valida que no se ingrese otra Categoria Default
+            string CategoriaDefault = "sin categoría".ToUpper();
+            string categoriaDef = "sin categoria".ToUpper();
+            if ((txtDescripcion.Text.ToUpper() == CategoriaDefault) || (txtDescripcion.Text.ToUpper() == categoriaDef))
+            {
+                lblValidacion.Text = "Ya existe la Categoria Default 'Sin Categoría'";
+                return;
+            }                       
+            if (txtDescripcion.Text == "")
             {
                 lblValidacion.Text = "Complete la descripción";
                 return;
-
             }
             CategoriaNegocio negocio = new CategoriaNegocio();
 

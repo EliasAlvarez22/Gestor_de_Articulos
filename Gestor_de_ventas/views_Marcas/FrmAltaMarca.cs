@@ -30,6 +30,13 @@ namespace Gestor_de_ventas.views_Marcas
         {
             try
             {
+                //Valida que no se ingrese otra marca Default
+                string MarcaDefault = "Sin Marca".ToUpper();
+                if (txtDescripcion.Text.ToUpper() == MarcaDefault)
+                {
+                    lblValidacion.Text = "Ya existe la Marca Default 'Sin Marca'";
+                    return;
+                }
                 //Validaciones
                 if (txtDescripcion.Text == "")
                 {

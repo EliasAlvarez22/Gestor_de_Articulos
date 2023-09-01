@@ -43,7 +43,7 @@
             this.lblValidacion.AutoSize = true;
             this.lblValidacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblValidacion.ForeColor = System.Drawing.Color.Red;
-            this.lblValidacion.Location = new System.Drawing.Point(216, 334);
+            this.lblValidacion.Location = new System.Drawing.Point(164, 340);
             this.lblValidacion.Name = "lblValidacion";
             this.lblValidacion.Size = new System.Drawing.Size(0, 25);
             this.lblValidacion.TabIndex = 18;

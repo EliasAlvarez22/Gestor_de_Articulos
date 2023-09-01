@@ -265,10 +265,24 @@ namespace Gestor_de_ventas
                     LblValidacionFiltro.Text = "Debe tener un filtro esta búsqueda";
                     return;
                 }
+                if (CboCampo.Text == "Precio")
+                {
+                    string contFiltro = TxtFiltro.Text;
+                    foreach (char c in contFiltro)
+                    {
+                        if (!char.IsDigit(c))
+                        {
+                            LblValidacionFiltro.Text = "Solo acepta numeros el campo filtro";
+                            return; // Se encontró un carácter no numérico
+                        }
+                    }
+                }
+                if (DgvArticulos.Rows.Count == 0)
+                    return;
                 else                
-                    LblValidacionFiltro.Text = "";                
-                if (DgvArticulos.Rows.Count == 0)                
-                    return;                
+                    LblValidacionFiltro.Text = "";
+                
+                               
                 //Logica
                 List<Articulo> listaFiltrada;
                 DgvArticulos.DataSource = null;
@@ -324,6 +338,17 @@ namespace Gestor_de_ventas
         private void btnExportarExcel_Click(object sender, EventArgs e)
         {
             ExportarExcel(DgvArticulos);
+        }
+
+        private void DgvArticulos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            
+            if (e.Value is double || e.Value is float || e.Value is decimal)
+            {
+                e.Value = Math.Truncate(Convert.ToDecimal(e.Value)).ToString();
+                e.FormattingApplied = true;
+            }
+            
         }
     }
 }
